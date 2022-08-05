@@ -14,8 +14,8 @@
 
 #include <list>
 #include <mutex>  // NOLINT
+#include <unordered_map>
 #include <vector>
-
 #include "buffer/replacer.h"
 #include "common/config.h"
 
@@ -47,6 +47,10 @@ class LRUReplacer : public Replacer {
 
  private:
   // TODO(student): implement me!
+  size_t capacity_;            // LRU的容量
+  std::list<frame_id_t> lst_;  // 双链表
+  std::unordered_map<frame_id_t, int> mp_;
+  std::mutex mtx_;  // 用于添加互斥锁
 };
 
 }  // namespace bustub

@@ -24,20 +24,21 @@ namespace bustub {
 // NOLINTNEXTLINE
 
 // NOLINTNEXTLINE
-TEST(HashTableTest, DISABLED_SampleTest) {
+TEST(HashTableTest, SampleTest) {
   auto *disk_manager = new DiskManager("test.db");
   auto *bpm = new BufferPoolManagerInstance(50, disk_manager);
   ExtendibleHashTable<int, int, IntComparator> ht("blah", bpm, IntComparator(), HashFunction<int>());
+  std::cout << "[----------] set new hash_table" << std::endl;
 
   // insert a few values
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 50; i++) {
     ht.Insert(nullptr, i, i);
     std::vector<int> res;
     ht.GetValue(nullptr, i, &res);
     EXPECT_EQ(1, res.size()) << "Failed to insert " << i << std::endl;
     EXPECT_EQ(i, res[0]);
   }
-
+  std::cout << "[----------] insert value" << std::endl;
   ht.VerifyIntegrity();
 
   // check if the inserted values are all there
@@ -47,7 +48,7 @@ TEST(HashTableTest, DISABLED_SampleTest) {
     EXPECT_EQ(1, res.size()) << "Failed to keep " << i << std::endl;
     EXPECT_EQ(i, res[0]);
   }
-
+  std::cout << "[----------] check inserted value" << std::endl;
   ht.VerifyIntegrity();
 
   // insert one more value for each key
@@ -76,12 +77,16 @@ TEST(HashTableTest, DISABLED_SampleTest) {
     }
   }
 
+  std::cout << "[----------] insert one more value for each key" << std::endl;
+
   ht.VerifyIntegrity();
 
   // look for a key that does not exist
   std::vector<int> res;
-  ht.GetValue(nullptr, 20, &res);
+  ht.GetValue(nullptr, 100, &res);
   EXPECT_EQ(0, res.size());
+
+  std::cout << "[----------] look for a key that does not exist" << std::endl;
 
   // delete some values
   for (int i = 0; i < 5; i++) {
@@ -96,15 +101,41 @@ TEST(HashTableTest, DISABLED_SampleTest) {
       EXPECT_EQ(2 * i, res[0]);
     }
   }
-
+  std::cout << "[----------] delete some values" << std::endl;
   ht.VerifyIntegrity();
 
-  // delete all values
+  // print all the key and value
   for (int i = 0; i < 5; i++) {
+    std::vector<int> res;
+    ht.GetValue(nullptr, i, &res);
+    if (i == 0) {
+      // std::cout << "i == 0 GetValue is " << ht.GetValue(nullptr, i, &res) << std::endl;
+      EXPECT_FALSE(ht.GetValue(nullptr, i, &res));
+      continue;
+    }
+    // std::cout << "res.size() = " << res.size() << std::endl;
+    // std::cout << "res[0] = " << res[0] << std::endl;
+    EXPECT_EQ(1, res.size());
+    EXPECT_EQ(2 * i, res[0]);
+  }
+  std::cout << "[----------] test exit key and value" << std::endl;
+  ht.VerifyIntegrity();
+
+  // Remove测试不通过, 卡在循环
+  // delete all values
+  std::cout << "[----------] test delete" << std::endl;
+  for (int i = 0; i < 5; i++) {
+    // std::vector<int> res;
+    // ht.GetValue(nullptr, i, &res);
     if (i == 0) {
       // (0, 0) has been deleted
+      // std::cout << "k v exit " << ht.GetValue(nullptr, i, &res) << std::endl;
+      // std::cout << "remove i is " << ht.Remove(nullptr, i, 2 * i) << std::endl;
       EXPECT_FALSE(ht.Remove(nullptr, i, 2 * i));
     } else {
+      // std::cout << "removing value " << i << std::endl;
+      // assert(ht.Remove(nullptr, i, 2 * i));
+      // i == 3 的时候需要merge
       EXPECT_TRUE(ht.Remove(nullptr, i, 2 * i));
     }
   }
@@ -115,6 +146,8 @@ TEST(HashTableTest, DISABLED_SampleTest) {
   remove("test.db");
   delete disk_manager;
   delete bpm;
+
+  std::cout << "[----------] all test ends" << std::endl;
 }
 
 }  // namespace bustub

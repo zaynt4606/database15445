@@ -11,8 +11,9 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-
+#include <vector>
 #include "buffer/buffer_pool_manager.h"
+#include "buffer/buffer_pool_manager_instance.h"
 #include "recovery/log_manager.h"
 #include "storage/disk/disk_manager.h"
 #include "storage/page/page.h"
@@ -86,5 +87,14 @@ class ParallelBufferPoolManager : public BufferPoolManager {
    * Flushes all the pages in the buffer pool to disk.
    */
   void FlushAllPgsImp() override;
+
+ private:
+  std::vector<BufferPoolManagerInstance *> buffer_pools_;
+  // size_t num_instances_;  // 缓冲池个数
+  size_t pool_size_;  // 每个缓冲池的容量，都相同
+  // 整个buffer_pool_的大小是每个buffer_pool的大小乘buffer_pool的个数,也就是buffer_pools.size()*pool_size
+  size_t num_instances_;     // buffer pool的个数
+  size_t next_instance_{0};  // 下一个新页需要放的池子编号
+  std::mutex latch_;
 };
 }  // namespace bustub

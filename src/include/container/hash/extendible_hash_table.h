@@ -11,11 +11,9 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-
 #include <queue>
 #include <string>
 #include <vector>
-
 #include "buffer/buffer_pool_manager.h"
 #include "concurrency/transaction.h"
 #include "container/hash/hash_function.h"
@@ -93,6 +91,15 @@ class ExtendibleHashTable {
    * @return the downcasted 32-bit hash
    */
   inline auto Hash(KeyType key) -> uint32_t;
+
+  /**
+   * @brief base的power次方函数,主要解决类型的问题不直接用pow
+   *
+   * @param base
+   * @param power
+   * @return uint32_t
+   */
+  inline auto Pow(uint32_t base, uint32_t power) -> uint32_t;
 
   /**
    * KeyToDirectoryIndex - maps a key to a directory index
