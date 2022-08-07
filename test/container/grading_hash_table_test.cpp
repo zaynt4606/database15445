@@ -344,7 +344,7 @@ void SplitGrowTestCall(KeyType k /* unused */, ValueType v /* unused */, KeyComp
     EXPECT_EQ(1, res.size()) << "Failed to insert " << i << std::endl;
     EXPECT_EQ(value, res[0]);
   }
-  std::cout << "[----------] here i am " << std::endl;
+  // std::cout << "[----------] here i am " << std::endl;
   ht.VerifyIntegrity();
 
   disk_manager->ShutDown();
@@ -370,6 +370,7 @@ void GrowShrinkTestCall(KeyType k /* unused */, ValueType v /* unused */, KeyCom
   }
 
   ht.VerifyIntegrity();
+  // std::cout << "[----------] insert 1000 " << std::endl;
 
   for (int i = 0; i < 500; i++) {
     auto key = GetKey<KeyType>(i);
@@ -381,6 +382,7 @@ void GrowShrinkTestCall(KeyType k /* unused */, ValueType v /* unused */, KeyCom
   }
 
   ht.VerifyIntegrity();
+  // std::cout << "[----------] remove 500 " << std::endl;
 
   for (int i = 1000; i < 1500; i++) {
     auto key = GetKey<KeyType>(i);
@@ -393,6 +395,7 @@ void GrowShrinkTestCall(KeyType k /* unused */, ValueType v /* unused */, KeyCom
   }
 
   ht.VerifyIntegrity();
+  // std::cout << "[----------] insert 1000 —— 1500 " << std::endl;
 
   for (int i = 500; i < 1000; i++) {
     auto key = GetKey<KeyType>(i);
@@ -404,6 +407,7 @@ void GrowShrinkTestCall(KeyType k /* unused */, ValueType v /* unused */, KeyCom
   }
 
   ht.VerifyIntegrity();
+  // std::cout << "[----------] remove 500 —— 1000 " << std::endl;
 
   for (int i = 0; i < 500; i++) {
     auto key = GetKey<KeyType>(i);
@@ -416,6 +420,7 @@ void GrowShrinkTestCall(KeyType k /* unused */, ValueType v /* unused */, KeyCom
   }
 
   ht.VerifyIntegrity();
+  // std::cout << "[----------] insert 0 —— 500 " << std::endl;
 
   for (int i = 1000; i < 1500; i++) {
     auto key = GetKey<KeyType>(i);
@@ -427,6 +432,7 @@ void GrowShrinkTestCall(KeyType k /* unused */, ValueType v /* unused */, KeyCom
   }
 
   ht.VerifyIntegrity();
+  // std::cout << "[----------] remove 1000 —— 1500 " << std::endl;
 
   for (int i = 0; i < 500; i++) {
     auto key = GetKey<KeyType>(i);
@@ -438,6 +444,7 @@ void GrowShrinkTestCall(KeyType k /* unused */, ValueType v /* unused */, KeyCom
   }
 
   ht.VerifyIntegrity();
+  // std::cout << "[----------] remove 0 —— 500 " << std::endl;
 
   //  remove everything and make sure global depth < max_global_depth
   for (int i = 0; i < 1500; i++) {
@@ -448,6 +455,7 @@ void GrowShrinkTestCall(KeyType k /* unused */, ValueType v /* unused */, KeyCom
 
   assert(ht.GetGlobalDepth() <= 1);
   ht.VerifyIntegrity();
+  // std::cout << "[----------] remove 0 —— 1500 " << std::endl;
 
   disk_manager->ShutDown();
   remove("test.db");
@@ -492,11 +500,15 @@ TEST(HashTableTest, SplitGrowTest) {
 }
 
 TEST(HashTableTest, GrowShrinkTest) {
+  // std::cout << "[----------] growshrinktest 0" << std::endl;
   GrowShrinkTestCall(1, 1, IntComparator());
-
+  // std::cout << "[----------] growshrinktest 8" << std::endl;
   GenericTestCall<GenericKey<8>, RID, GenericComparator<8>>(GrowShrinkTestCall);
+  // std::cout << "[----------] growshrinktest 16" << std::endl;
   GenericTestCall<GenericKey<16>, RID, GenericComparator<16>>(GrowShrinkTestCall);
+  // std::cout << "[----------] growshrinktest 32" << std::endl;
   GenericTestCall<GenericKey<32>, RID, GenericComparator<32>>(GrowShrinkTestCall);
+  // std::cout << "[----------] growshrinktest 64" << std::endl;
   GenericTestCall<GenericKey<64>, RID, GenericComparator<64>>(GrowShrinkTestCall);
 }
 
