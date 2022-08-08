@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="6" failures="0" disabled="0" errors="0" time="3.279" timestamp="2022-08-07T23:14:48.364" name="AllTests">
+  <testsuite name="LRUReplacerTest" tests="6" failures="0" disabled="0" skipped="0" errors="0" time="3.279" timestamp="2022-08-07T23:14:48.364">
+    <testcase name="SampleTest" file="/opt/project/cmu15-445/bustub-private/test/buffer/lru_replacer_test.cpp" line="26" status="run" result="completed" time="0" timestamp="2022-08-07T23:14:48.364" classname="LRUReplacerTest" />
+    <testcase name="Victim" file="/opt/project/cmu15-445/bustub-private/test/buffer/lru_replacer_test.cpp" line="66" status="run" result="completed" time="0.001" timestamp="2022-08-07T23:14:48.365" classname="LRUReplacerTest" />
+    <testcase name="Pin" file="/opt/project/cmu15-445/bustub-private/test/buffer/lru_replacer_test.cpp" line="134" status="run" result="completed" time="0.014" timestamp="2022-08-07T23:14:48.366" classname="LRUReplacerTest" />
+    <testcase name="Size" file="/opt/project/cmu15-445/bustub-private/test/buffer/lru_replacer_test.cpp" line="212" status="run" result="completed" time="1.211" timestamp="2022-08-07T23:14:48.381" classname="LRUReplacerTest" />
+    <testcase name="ConcurrencyTest" file="/opt/project/cmu15-445/bustub-private/test/buffer/lru_replacer_test.cpp" line="251" status="run" result="completed" time="0.298" timestamp="2022-08-07T23:14:49.593" classname="LRUReplacerTest" />
+    <testcase name="IntegratedTest" file="/opt/project/cmu15-445/bustub-private/test/buffer/lru_replacer_test.cpp" line="290" status="run" result="completed" time="1.752" timestamp="2022-08-07T23:14:49.891" classname="LRUReplacerTest" />
+  </testsuite>
+</testsuites>

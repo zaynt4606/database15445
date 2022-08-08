@@ -1,0 +1,14 @@
+# Target labels
+ googletest
+# Source files and their labels
+/opt/project/cmu15-445/bustub-private/build/googletest-download/CMakeFiles/googletest
+/opt/project/cmu15-445/bustub-private/build/googletest-download/CMakeFiles/googletest.rule
+/opt/project/cmu15-445/bustub-private/build/googletest-download/CMakeFiles/googletest-complete.rule
+/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-build.rule
+/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-configure.rule
+/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-download.rule
+/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-install.rule
+/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-mkdir.rule
+/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-patch.rule
+/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-test.rule
+/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-update.rule

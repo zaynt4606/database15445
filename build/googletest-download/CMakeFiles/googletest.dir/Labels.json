@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/opt/project/cmu15-445/bustub-private/build/googletest-download/CMakeFiles/googletest"
+		},
+		{
+			"file" : "/opt/project/cmu15-445/bustub-private/build/googletest-download/CMakeFiles/googletest.rule"
+		},
+		{
+			"file" : "/opt/project/cmu15-445/bustub-private/build/googletest-download/CMakeFiles/googletest-complete.rule"
+		},
+		{
+			"file" : "/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-build.rule"
+		},
+		{
+			"file" : "/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-configure.rule"
+		},
+		{
+			"file" : "/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-download.rule"
+		},
+		{
+			"file" : "/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-install.rule"
+		},
+		{
+			"file" : "/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-mkdir.rule"
+		},
+		{
+			"file" : "/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-patch.rule"
+		},
+		{
+			"file" : "/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-test.rule"
+		},
+		{
+			"file" : "/opt/project/cmu15-445/bustub-private/build/googletest-download/googletest-prefix/src/googletest-stamp/googletest-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"googletest"
+		],
+		"name" : "googletest"
+	}
+}

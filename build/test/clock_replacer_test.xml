@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="1" failures="0" disabled="1" errors="0" time="0" timestamp="2022-08-07T23:14:48.364" name="AllTests">
+  <testsuite name="ClockReplacerTest" tests="1" failures="0" disabled="1" skipped="0" errors="0" time="0" timestamp="1970-01-01T08:00:00.000">
+    <testcase name="DISABLED_SampleTest" file="/opt/project/cmu15-445/bustub-private/test/buffer/clock_replacer_test.cpp" line="22" status="notrun" result="suppressed" time="0" timestamp="1970-01-01T08:00:00.000" classname="ClockReplacerTest" />
+  </testsuite>
+</testsuites>
