@@ -122,7 +122,7 @@ class Catalog {
    * @return A (non-owning) pointer to the metadata for the table
    */
   auto CreateTable(Transaction *txn, const std::string &table_name, const Schema &schema) -> TableInfo * {
-    if (table_names_.count(table_name) != 0) {
+    if (table_names_.count(table_name) != 0) {  // 判断已经存在
       return NULL_TABLE_INFO;
     }
 
@@ -172,7 +172,6 @@ class Catalog {
     if (meta == tables_.end()) {
       return NULL_TABLE_INFO;
     }
-
     return (meta->second).get();
   }
 
@@ -193,6 +192,7 @@ class Catalog {
                    const Schema &key_schema, const std::vector<uint32_t> &key_attrs, std::size_t keysize,
                    HashFunction<KeyType> hash_function) -> IndexInfo * {
     // Reject the creation request for nonexistent table
+    // 不存在要创建的index的table_name
     if (table_names_.find(table_name) == table_names_.end()) {
       return NULL_INDEX_INFO;
     }
@@ -234,7 +234,7 @@ class Catalog {
 
     // Update internal tracking
     indexes_.emplace(index_oid, std::move(index_info));
-    table_indexes.emplace(index_name, index_oid);
+    table_indexes.emplace(index_name, index_oid);  // index_names的第二项加入新创建的这个index_name和index_oid
 
     return tmp;
   }

@@ -316,15 +316,15 @@ auto HASH_TABLE_TYPE::Remove(Transaction *transaction, const KeyType &key, const
   bucket_page->WLatch();
   auto success = hash_bucket_page->Remove(key, value, comparator_);
   bucket_page->WUnlatch();
-  
+
   buffer_pool_manager_->UnpinPage(bucket_page_id, success, nullptr);
   buffer_pool_manager_->UnpinPage(directory_page_id_, false, nullptr);
-  
+
   table_latch_.RUnlock();
   // 需要merge
   if (success && hash_bucket_page->IsEmpty()) {
     Merge(transaction, key, value);
-    // while (ExtraMerge(transaction, key, value)) {} 
+    // while (ExtraMerge(transaction, key, value)) {}
   }
   return success;
 }
@@ -340,14 +340,13 @@ void HASH_TABLE_TYPE::Merge(Transaction *transaction, const KeyType &key, const 
 
   // traverse the directory page and merge all empty buckets.
   uint32_t i = 0;
-  while (i < dir_page_data->Size()){
+  while (i < dir_page_data->Size()) {
     auto old_local_depth = dir_page_data->GetLocalDepth(i);
     auto bucket_page_id = dir_page_data->GetBucketPageId(i);
     auto bucket_page_data = FetchBucketPage(bucket_page_id);
     auto bucket_page = reinterpret_cast<Page *>(bucket_page_data);
     bucket_page->RLatch();
     if (old_local_depth > 1 && bucket_page_data->IsEmpty()) {
-      
       auto split_bucket_idx = dir_page_data->GetSplitImageIndex(i);
       if (dir_page_data->GetLocalDepth(split_bucket_idx) == old_local_depth) {
         dir_page_data->DecrLocalDepth(i);

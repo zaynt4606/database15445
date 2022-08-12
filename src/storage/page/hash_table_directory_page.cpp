@@ -45,7 +45,7 @@ auto HashTableDirectoryPage::GetLocalDepthMask(uint32_t bucket_idx) -> uint32_t 
   return mask;
 }
 
-void HashTableDirectoryPage::IncrGlobalDepth() { 
+void HashTableDirectoryPage::IncrGlobalDepth() {
   // assert(global_depth_ < MAX_BUCKET_DEPTH);
   // int origin_num = 1 << global_depth_;
   // int new_index = origin_num;
@@ -55,7 +55,7 @@ void HashTableDirectoryPage::IncrGlobalDepth() {
   //   bucket_page_ids_[new_index] = bucket_page_ids_[origin_index];
   //   local_depths_[new_index] = local_depths_[origin_index];
   // }
-  global_depth_++; 
+  global_depth_++;
 }
 
 void HashTableDirectoryPage::DecrGlobalDepth() { global_depth_--; }
@@ -103,7 +103,8 @@ auto HashTableDirectoryPage::GetSplitImageIndex(uint32_t bucket_idx) -> uint32_t
   // auto high_bits = GetLocalHighBit(bucket_idx);
   // uint32_t split_image_index =
   //     high_bits | (bucket_idx & static_cast<uint32_t>(std::pow(static_cast<long double>(2),
-  //                                                              static_cast<long double>(GetLocalDepth(bucket_idx)))));
+  //                                                              static_cast<long
+  //                                                              double>(GetLocalDepth(bucket_idx)))));
   // return split_image_index & GetLocalDepthMask(bucket_idx);
 
   uint32_t local_depth = local_depths_[bucket_idx];
@@ -124,7 +125,7 @@ void HashTableDirectoryPage::SetLocalDepth(uint32_t bucket_idx, uint8_t local_de
   local_depths_[bucket_idx] = local_depth;
 }
 
-void HashTableDirectoryPage::IncrLocalDepth(uint32_t bucket_idx) { 
+void HashTableDirectoryPage::IncrLocalDepth(uint32_t bucket_idx) {
   local_depths_[bucket_idx]++;
   // assert(local_depths_[bucket_idx] <= global_depth_);
 }

@@ -20,7 +20,7 @@
 #include "storage/index/generic_key.h"
 #include "storage/page/hash_table_page_defs.h"
 
-# define MAX_BUCKET_DEPTH 9
+#define MAX_BUCKET_DEPTH 9
 
 namespace bustub {
 

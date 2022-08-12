@@ -20,6 +20,8 @@
 namespace bustub {
 /**
  * ExecutorFactory creates executors for arbitrary plan nodes.
+ * 查询执行期间在运行时创建execute
+ * 根据要执行的executor类型创建一个对应类型的executorex
  */
 class ExecutorFactory {
  public:

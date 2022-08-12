@@ -144,7 +144,7 @@ class HashTableBucketPage {
 
   // 测试方法，返回所有方法
   // std::vector<MappingType> GetAllItem();
-  auto GetAllTtem() -> std::vector<MappingType>;
+  auto GetAllItem() -> std::vector<MappingType>;
 
  private:
   //  For more on BUCKET_ARRAY_SIZE see storage/page/hash_table_page_defs.h

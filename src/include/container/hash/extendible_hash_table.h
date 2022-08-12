@@ -168,7 +168,6 @@ class ExtendibleHashTable {
    */
   void Merge(Transaction *transaction, const KeyType &key, const ValueType &value);
 
-
   bool ExtraMerge(Transaction *transaction, const KeyType &key, const ValueType &value);
 
   // member variables
