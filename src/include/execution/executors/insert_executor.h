@@ -53,12 +53,23 @@ class InsertExecutor : public AbstractExecutor {
    */
   auto Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool override;
 
+  auto Insert(Tuple &tuple, RID *rid) -> bool;
+
   /** @return The output schema for the insert */
   auto GetOutputSchema() -> const Schema * override { return plan_->OutputSchema(); };
 
  private:
   /** The insert plan node to be executed*/
   const InsertPlanNode *plan_;
+  /** Metadata identifying the table that should be updated */
+  TableInfo *table_info_{Catalog::NULL_TABLE_INFO};
+  /** All indexes associated with the table being inserted  */
+  std::vector<IndexInfo *> index_info_vec_;
+  /** The child executor to obtain value from */
+  std::unique_ptr<AbstractExecutor> child_executor_;
+  /** The index of the next value to be inserted */
+  size_t next_insert_pos_{0};
+  // std::vector<std::vector<Value>>::iterator iter_{nullptr};
 };
 
 }  // namespace bustub

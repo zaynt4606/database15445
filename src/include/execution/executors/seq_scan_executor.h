@@ -53,5 +53,6 @@ class SeqScanExecutor : public AbstractExecutor {
   Schema *schema_;
   TableHeap *table_heap_;
   TableIterator table_iter_;
+  TableIterator table_end_iter_;
 };
 }  // namespace bustub

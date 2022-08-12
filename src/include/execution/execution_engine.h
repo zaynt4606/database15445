@@ -25,8 +25,8 @@ namespace bustub {
 
 /**
  * The ExecutionEngine class executes query plans.
- * It converts the input query plan to a query executor, 
- * and executes it until all results have been produced. 
+ * It converts the input query plan to a query executor,
+ * and executes it until all results have been produced.
  * 将输入的查询计划转化为查询执行器，并执行它直到产生所有结果
  */
 class ExecutionEngine {
@@ -48,7 +48,7 @@ class ExecutionEngine {
    * @param result_set The set of tuples produced by executing the plan
    * @param txn The transaction context in which the query executes
    * @param exec_ctx The executor context in which the query executes，当前执行的上下文
-   *        记录了bfp, log manager, lock manager, catalog，txnmanager，catalog中有Tables和Indexs比较重要 
+   *        记录了bfp, log manager, lock manager, catalog，txnmanager，catalog中有Tables和Indexs比较重要
    * @return `true` if execution of the query plan succeeds, `false` otherwise
    */
 
