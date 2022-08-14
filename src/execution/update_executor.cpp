@@ -17,11 +17,52 @@ namespace bustub {
 
 UpdateExecutor::UpdateExecutor(ExecutorContext *exec_ctx, const UpdatePlanNode *plan,
                                std::unique_ptr<AbstractExecutor> &&child_executor)
-    : AbstractExecutor(exec_ctx) {}
+    : AbstractExecutor(exec_ctx),
+      plan_(plan),
+      table_info_(exec_ctx->GetCatalog()->GetTable(plan->TableOid())),
+      child_executor_(std::move(child_executor)){}
+      
 
-void UpdateExecutor::Init() {}
+void UpdateExecutor::Init() {
+  // exec_ctx_ 是abstract_executor的成员，上面的构造函数用exec_ctx来构造了AbstractExecutor
+  index_info_vec_ = exec_ctx_->GetCatalog()->GetTableIndexes(table_info_->name_);
+  child_executor_->Init();
+}
 
-auto UpdateExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool { return false; }
+auto UpdateExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
+  auto transaction = exec_ctx_->GetTransaction();
+  auto lockmanager = exec_ctx_->GetLockManager();
+  Tuple child_tuple;
+  RID child_rid;
+  Tuple update_tuple;
+  RID update_rid;
+  bool res = child_executor_->Next(&child_tuple, &child_rid);
+  if (res) {
+    update_tuple = GenerateUpdatedTuple(child_tuple);
+    update_rid = update_tuple.GetRid();
+    
+    if (transaction->GetIsolationLevel() == IsolationLevel::REPEATABLE_READ) {
+      lockmanager->LockUpgrade(transaction, child_rid);  // 之前查询获取了读锁，现在需要将锁升级
+    } else {
+      lockmanager->LockExclusive(transaction, child_rid);  // 加上写锁
+    }
+
+    // 用TableHeap执行表修改, 参数需要new tuple, rid of old tuple
+    table_info_->table_->UpdateTuple(update_tuple, child_rid, exec_ctx_->GetTransaction());
+
+    // 修改所有索引
+    for (auto& index_info : index_info_vec_) {
+      // index删掉旧的，插入新的, rid都是child_executor输出tuple的rid
+      auto old_key_tuple = child_tuple.KeyFromTuple(table_info_->schema_, 
+                                                    index_info->key_schema_, index_info->index_->GetKeyAttrs());
+      auto new_key_tuple = update_tuple.KeyFromTuple(table_info_->schema_,
+                                                     index_info->key_schema_, index_info->index_->GetKeyAttrs());
+      index_info->index_->DeleteEntry(old_key_tuple, child_rid, exec_ctx_->GetTransaction());
+      index_info->index_->InsertEntry(new_key_tuple, child_rid, exec_ctx_->GetTransaction());
+    }
+  }
+  return res;
+}
 
 auto UpdateExecutor::GenerateUpdatedTuple(const Tuple &src_tuple) -> Tuple {
   const auto &update_attrs = plan_->GetUpdateAttr();

@@ -343,7 +343,7 @@ TEST_F(GradingExecutorTest, UpdateIntegrated) {
 }
 
 // Sequential add updates with N transactions
-TEST_F(GradingExecutorTest, DISABLED_SequentialUpdateAdd) {
+TEST_F(GradingExecutorTest, SequentialUpdateAdd) {
   constexpr const auto n_tasks = 10UL;
 
   // construct a sequential scan of the table

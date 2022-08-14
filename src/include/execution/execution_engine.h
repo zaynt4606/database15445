@@ -66,6 +66,7 @@ class ExecutionEngine {
     // factory的唯一函数
     // std::unique_ptr<AbstractExecutor>
     auto executor = ExecutorFactory::CreateExecutor(exec_ctx, plan);
+    // auto plan_type = plan->GetType();
 
     // Prepare the root executor
     // AbstractExecutor代指各种executor，各种executor都有成员函数Init和Next
@@ -79,12 +80,17 @@ class ExecutionEngine {
       Tuple tuple;
       RID rid;
       while (executor->Next(&tuple, &rid)) {
-        if (result_set != nullptr) {
+        // 这几个模式不修改result_set
+        // bool modify = 
+        // (plan_type != PlanType::Insert) && (plan_type != PlanType::Update) && (plan_type != PlanType::Delete);
+        if (result_set != nullptr && tuple.IsAllocated()) {  // 判断元组是否分配内存
           result_set->push_back(tuple);
         }
       }
     } catch (Exception &e) {
       // TODO(student): handle exceptions
+      LOG_DEBUG("%s", e.what());
+      return false;
     }
     return true;
   }

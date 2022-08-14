@@ -16,49 +16,107 @@
 
 namespace bustub {
 
+// InsertExecutor::InsertExecutor(ExecutorContext *exec_ctx, const InsertPlanNode *plan,
+//                                std::unique_ptr<AbstractExecutor> &&child_executor)
+//     : AbstractExecutor(exec_ctx), plan_(plan), child_executor_(std::move(child_executor)) {
+//   table_info_ = exec_ctx_->GetCatalog()->GetTable(plan_->TableOid());
+//   index_info_vec_ = exec_ctx_->GetCatalog()->GetTableIndexes(table_info_->name_);
+// }
+
+// void InsertExecutor::Init() {
+//   if (!plan_->IsRawInsert()) {
+//     child_executor_->Init();
+//   }
+//   next_insert_pos_ = 0;
+// }
+
+// bool InsertExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) {
+//   bool is_inserted = false;
+//   if (plan_->IsRawInsert()) {
+//     if (next_insert_pos_ == plan_->RawValues().size()) {
+//       // nothing to do
+//     } else {
+//       auto &values = plan_->RawValues();
+//       *tuple = Tuple(values[next_insert_pos_++], &table_info_->schema_);
+//       is_inserted = table_info_->table_->InsertTuple(*tuple, rid, exec_ctx_->GetTransaction());
+//     }
+//   } else if (child_executor_->Next(tuple, rid)) {
+//     is_inserted = table_info_->table_->InsertTuple(*tuple, rid, exec_ctx_->GetTransaction());
+//   }
+
+//   if (is_inserted && !index_info_vec_.empty()) {
+//     for (auto index_info : index_info_vec_) {
+//       const auto index_key =
+//           tuple->KeyFromTuple(table_info_->schema_, index_info->key_schema_, index_info->index_->GetKeyAttrs());
+//       index_info->index_->InsertEntry(index_key, *rid, exec_ctx_->GetTransaction());
+//     }
+//   }
+//   return is_inserted;
+// }
+
 InsertExecutor::InsertExecutor(ExecutorContext *exec_ctx, const InsertPlanNode *plan,
                                std::unique_ptr<AbstractExecutor> &&child_executor)
     : AbstractExecutor(exec_ctx),
       plan_(plan),
-      child_executor_(std::move(child_executor)){
-        table_info_ = exec_ctx->GetCatalog()->GetTable(plan_->TableOid()),
-        index_info_vec_ = exec_ctx->GetCatalog()->GetTableIndexes(table_info_->name_);
-      }
+      child_executor_(std::move(child_executor)),
+      catalog_(exec_ctx->GetCatalog()),
+      table_info_(catalog_->GetTable(plan->TableOid())),
+      table_heap_(table_info_->table_.get()) {}
 
 void InsertExecutor::Init() {
-  // 判断是否是raw insert, 也就是children_是否是空
   if (!plan_->IsRawInsert()) {
-    // 不是直接的raw insert
     child_executor_->Init();
+  } else {
+    iter_ = plan_->RawValues().begin();
   }
-  next_insert_pos_ = 0;
 }
 
 bool InsertExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) {
-  bool inserted = false;       // 记录是否成功insert
-  if (plan_->IsRawInsert()) {  // row insert
-    // RawValues() -> std::vector<std::vector<Value>>
-    if (next_insert_pos_ != plan_->RawValues().size()) {
-      auto &values = plan_->RawValues();  // 引用
-      // Tuple的构造函数 Tuple(std::vector<Value> values, const Schema *schema);
-      *tuple = Tuple(values[next_insert_pos_], &table_info_->schema_);
-      next_insert_pos_++;
-      inserted = table_info_->table_->InsertTuple(*tuple, rid, exec_ctx_->GetTransaction());
+  std::vector<Tuple> tuples;
+
+  if (!plan_->IsRawInsert()) {
+    if (!child_executor_->Next(tuple, rid)) {
+      return false;
     }
-  } else {  // 在childen里面找
-    if (child_executor_->Next(tuple, rid)) {
-      inserted = table_info_->table_->InsertTuple(*tuple, rid, exec_ctx_->GetTransaction());
+  } else {
+    if (iter_ == plan_->RawValues().end()) {
+      return false;
+    }
+    *tuple = Tuple(*iter_, &table_info_->schema_);
+    iter_++;
+  }
+
+  if (!table_heap_->InsertTuple(*tuple, rid, exec_ctx_->GetTransaction())) {
+    LOG_DEBUG("INSERT FAIL");
+    return false;
+  }
+
+  Transaction *txn = GetExecutorContext()->GetTransaction();
+  LockManager *lock_mgr = GetExecutorContext()->GetLockManager();
+
+  if (txn->IsSharedLocked(*rid)) {
+    if (!lock_mgr->LockUpgrade(txn, *rid)) {
+      throw TransactionAbortException(txn->GetTransactionId(), AbortReason::DEADLOCK);
+    }
+  } else {
+    if (!lock_mgr->LockExclusive(txn, *rid)) {
+      throw TransactionAbortException(txn->GetTransactionId(), AbortReason::DEADLOCK);
     }
   }
 
-  // 
-  if (inserted && !index_info_vec_.empty()) {
-    for (auto &index_info : index_info_vec_) {
-      auto key = tuple->KeyFromTuple(table_info_->schema_, index_info->key_schema_, index_info->index_->GetKeyAttrs());
-      index_info->index_->InsertEntry(key, *rid, exec_ctx_->GetTransaction());
+  for (const auto &index : catalog_->GetTableIndexes(table_info_->name_)) {
+    index->index_->InsertEntry(
+        tuple->KeyFromTuple(table_info_->schema_, *index->index_->GetKeySchema(), index->index_->GetKeyAttrs()), *rid,
+        exec_ctx_->GetTransaction());
+  }
+
+  if (txn->GetIsolationLevel() != IsolationLevel::REPEATABLE_READ) {
+    if (!lock_mgr->Unlock(txn, *rid)) {
+      throw TransactionAbortException(txn->GetTransactionId(), AbortReason::DEADLOCK);
     }
   }
-  return inserted;
+
+  return Next(tuple, rid);
 }
 
 }  // namespace bustub
