@@ -1,0 +1,3 @@
+repository='https://gitee.com/zaynt/googletest.git'
+module=''
+tag='origin'

@@ -37,6 +37,7 @@ class SeqScanPlanNode : public AbstractPlanNode {
   auto GetType() const -> PlanType override { return PlanType::SeqScan; }
 
   /** @return The predicate to test tuples against; tuples should only be returned if they evaluate to true */
+  // 指向父类的指针
   auto GetPredicate() const -> const AbstractExpression * { return predicate_; }
 
   /** @return The identifier of the table that should be scanned */

@@ -23,7 +23,7 @@
 namespace bustub {
 
 // NOLINTNEXTLINE
-TEST(HashTablePageTest, DISABLED_DirectoryPageSampleTest) {
+TEST(HashTablePageTest, DirectoryPageSampleTest) {
   DiskManager *disk_manager = new DiskManager("test.db");
   auto *bpm = new BufferPoolManagerInstance(5, disk_manager);
 
@@ -57,7 +57,7 @@ TEST(HashTablePageTest, DISABLED_DirectoryPageSampleTest) {
 }
 
 // NOLINTNEXTLINE
-TEST(HashTablePageTest, DISABLED_BucketPageSampleTest) {
+TEST(HashTablePageTest, BucketPageSampleTest) {
   DiskManager *disk_manager = new DiskManager("test.db");
   auto *bpm = new BufferPoolManagerInstance(5, disk_manager);
 
@@ -88,6 +88,7 @@ TEST(HashTablePageTest, DISABLED_BucketPageSampleTest) {
   // check for the flags
   for (unsigned i = 0; i < 15; i++) {
     if (i < 10) {
+      // 这里要求的是true 说明Remove之后occupied还是不变是1
       EXPECT_TRUE(bucket_page->IsOccupied(i));
       if (i % 2 == 1) {
         EXPECT_FALSE(bucket_page->IsReadable(i));

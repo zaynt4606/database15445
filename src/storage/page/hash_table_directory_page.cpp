@@ -12,8 +12,16 @@
 
 #include "storage/page/hash_table_directory_page.h"
 #include <algorithm>
+#include <cmath>
 #include <unordered_map>
 #include "common/logger.h"
+
+//  private:
+//   page_id_t page_id_;  // 自身页编号
+//   lsn_t lsn_;  // 日志序列号
+//   uint32_t global_depth_{0};  // 全局位置编码
+//   uint8_t local_depths_[DIRECTORY_ARRAY_SIZE];  // 局部位置编码, 表示在槽slot中找到对应的桶所需要的位数(深度)
+//   page_id_t bucket_page_ids_[DIRECTORY_ARRAY_SIZE];  // 这是一个数组存储每个bucket_id对应的page_id
 
 namespace bustub {
 auto HashTableDirectoryPage::GetPageId() const -> page_id_t { return page_id_; }
@@ -26,29 +34,118 @@ void HashTableDirectoryPage::SetLSN(lsn_t lsn) { lsn_ = lsn; }
 
 auto HashTableDirectoryPage::GetGlobalDepth() -> uint32_t { return global_depth_; }
 
-auto HashTableDirectoryPage::GetGlobalDepthMask() -> uint32_t { return 0; }
+// 和全局深度相同的mask,其实就是取全局深度,和全局深度相同长度的掩码的意思
+auto HashTableDirectoryPage::GetGlobalDepthMask() -> uint32_t {
+  uint32_t mask = (1 << global_depth_) - 1;
+  return mask;
+}
 
-void HashTableDirectoryPage::IncrGlobalDepth() {}
+auto HashTableDirectoryPage::GetLocalDepthMask(uint32_t bucket_idx) -> uint32_t {
+  uint32_t mask = (1 << GetLocalDepth(bucket_idx)) - 1;
+  return mask;
+}
+
+void HashTableDirectoryPage::IncrGlobalDepth() {
+  // assert(global_depth_ < MAX_BUCKET_DEPTH);
+  // int origin_num = 1 << global_depth_;
+  // int new_index = origin_num;
+  // int origin_index = 0;
+  // // 把之前的index统一放到扩大之后的后面一批
+  // for (; origin_index < origin_num; new_index++, origin_index++) {
+  //   bucket_page_ids_[new_index] = bucket_page_ids_[origin_index];
+  //   local_depths_[new_index] = local_depths_[origin_index];
+  // }
+  global_depth_++;
+}
 
 void HashTableDirectoryPage::DecrGlobalDepth() { global_depth_--; }
 
-auto HashTableDirectoryPage::GetBucketPageId(uint32_t bucket_idx) -> page_id_t { return 0; }
+/**
+ * Lookup a bucket page using a directory index
+ *
+ * @param bucket_idx the index in the directory to lookup
+ * @return bucket page_id corresponding to bucket_idx
+ */
+auto HashTableDirectoryPage::GetBucketPageId(uint32_t bucket_idx) -> page_id_t {
+  page_id_t page_id = bucket_page_ids_[bucket_idx];
+  return page_id;
+}
 
-void HashTableDirectoryPage::SetBucketPageId(uint32_t bucket_idx, page_id_t bucket_page_id) {}
+// 给每个bucket_idx设置一个对应的page_id存放在bucket_page_ids_中
+void HashTableDirectoryPage::SetBucketPageId(uint32_t bucket_idx, page_id_t bucket_page_id) {
+  bucket_page_ids_[bucket_idx] = bucket_page_id;
+}
 
-auto HashTableDirectoryPage::Size() -> uint32_t { return 0; }
+// the current directory size
+// 整个directory的大小
+auto HashTableDirectoryPage::Size() -> uint32_t { return 1 << global_depth_; }
 
-auto HashTableDirectoryPage::CanShrink() -> bool { return false; }
+// true if the directory can be shrunk(收缩)
+// 可以shrunk就是整个local_depths_都小于global_depth_,收缩的是global_depth_
+auto HashTableDirectoryPage::CanShrink() -> bool {
+  for (uint32_t i = 0; i < Size(); i++) {
+    uint32_t depth = local_depths_[i];
+    // assert(depth <= global_depth_);
+    if (depth == global_depth_) {  // local不可能大于global所以只判断相等即可
+      return false;
+    }
+  }
+  return true;
+}
 
-auto HashTableDirectoryPage::GetLocalDepth(uint32_t bucket_idx) -> uint32_t { return 0; }
+/**
+ * Gets the split image of an index
+ *
+ * @param bucket_idx the directory index for which to find the split image
+ * @return the directory index of the split image
+ **/
+auto HashTableDirectoryPage::GetSplitImageIndex(uint32_t bucket_idx) -> uint32_t {
+  // auto high_bits = GetLocalHighBit(bucket_idx);
+  // uint32_t split_image_index =
+  //     high_bits | (bucket_idx & static_cast<uint32_t>(std::pow(static_cast<long double>(2),
+  //                                                              static_cast<long
+  //                                                              double>(GetLocalDepth(bucket_idx)))));
+  // return split_image_index & GetLocalDepthMask(bucket_idx);
 
-void HashTableDirectoryPage::SetLocalDepth(uint32_t bucket_idx, uint8_t local_depth) {}
+  uint32_t local_depth = local_depths_[bucket_idx];
+  // 对应的split_idx就是最高位不同的那一个， 最高位取亦或
+  return bucket_idx ^ (1 << (local_depth - 1));
+}
 
-void HashTableDirectoryPage::IncrLocalDepth(uint32_t bucket_idx) {}
+/**
+ * Gets the local depth of the bucket at bucket_idx
+ *
+ * @param bucket_idx the bucket index to lookup
+ * @return the local depth of the bucket at bucket_idx
+ */
+auto HashTableDirectoryPage::GetLocalDepth(uint32_t bucket_idx) -> uint32_t { return local_depths_[bucket_idx]; }
 
-void HashTableDirectoryPage::DecrLocalDepth(uint32_t bucket_idx) {}
+void HashTableDirectoryPage::SetLocalDepth(uint32_t bucket_idx, uint8_t local_depth) {
+  // assert(local_depth <= global_depth_);
+  local_depths_[bucket_idx] = local_depth;
+}
 
-auto HashTableDirectoryPage::GetLocalHighBit(uint32_t bucket_idx) -> uint32_t { return 0; }
+void HashTableDirectoryPage::IncrLocalDepth(uint32_t bucket_idx) {
+  local_depths_[bucket_idx]++;
+  // assert(local_depths_[bucket_idx] <= global_depth_);
+}
+
+void HashTableDirectoryPage::DecrLocalDepth(uint32_t bucket_idx) { local_depths_[bucket_idx]--; }
+
+/**
+ * Gets the high bit corresponding to the bucket's local depth.
+ * This is not the same as the bucket index itself.  This method
+ * is helpful for finding the pair, or "split image", of a bucket.
+ *
+ * @param bucket_idx bucket index to lookup
+ * @return the high bit corresponding to the bucket's local depth
+ */
+// 得到本地最大的bucket_idx对应的localmask + 1；
+// 1001 得到 10000
+auto HashTableDirectoryPage::GetLocalHighBit(uint32_t bucket_idx) -> uint32_t {
+  auto local_depth = GetLocalDepth(bucket_idx);
+  return ((bucket_idx >> (local_depth - 1)) + 1) << (local_depth - 1);
+}
 
 /**
  * VerifyIntegrity - Use this for debugging but **DO NOT CHANGE**
@@ -69,11 +166,12 @@ void HashTableDirectoryPage::VerifyIntegrity() {
   for (uint32_t curr_idx = 0; curr_idx < Size(); curr_idx++) {
     page_id_t curr_page_id = bucket_page_ids_[curr_idx];
     uint32_t curr_ld = local_depths_[curr_idx];
-    assert(curr_ld <= global_depth_);
+    assert(curr_ld <= global_depth_);  // 判断条件是不是成立,不成立
 
     ++page_id_to_count[curr_page_id];
 
     if (page_id_to_ld.count(curr_page_id) > 0 && curr_ld != page_id_to_ld[curr_page_id]) {
+      // 已经存在并且发现ld不同
       uint32_t old_ld = page_id_to_ld[curr_page_id];
       LOG_WARN("Verify Integrity: curr_local_depth: %u, old_local_depth %u, for page_id: %u", curr_ld, old_ld,
                curr_page_id);

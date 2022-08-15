@@ -25,6 +25,9 @@ namespace bustub {
 
 /**
  * The ExecutionEngine class executes query plans.
+ * It converts the input query plan to a query executor,
+ * and executes it until all results have been produced.
+ * 将输入的查询计划转化为查询执行器，并执行它直到产生所有结果
  */
 class ExecutionEngine {
  public:
@@ -41,33 +44,54 @@ class ExecutionEngine {
 
   /**
    * Execute a query plan.
-   * @param plan The query plan to execute
+   * @param plan The query plan to execute，也就是executor对应的planNode，也就是executor的类型
    * @param result_set The set of tuples produced by executing the plan
    * @param txn The transaction context in which the query executes
-   * @param exec_ctx The executor context in which the query executes
+   * @param exec_ctx The executor context in which the query executes，当前执行的上下文
+   *        记录了bfp, log manager, lock manager, catalog，txnmanager，catalog中有Tables和Indexs比较重要
    * @return `true` if execution of the query plan succeeds, `false` otherwise
+   */
+
+  /**
+   * learning
+   * AbstractPlanNode
+   * 是所有PlanNode的父类。对应的有一个枚举类PlanType，表示所有可能的PlanNode类型。
+   * AbstractPlanNode只有两个成员变量，一个是output_shcema,
+   * 在Next返回tuple（如果需要返回tuple）时可以根据output_schema选择输出tuple的哪几个column（相当于select）。
+   * 另一个是vector children_, 里面有所有children的常量指针。
    */
   auto Execute(const AbstractPlanNode *plan, std::vector<Tuple> *result_set, Transaction *txn,
                ExecutorContext *exec_ctx) -> bool {
     // Construct and executor for the plan
+    // factory的唯一函数
+    // std::unique_ptr<AbstractExecutor>
     auto executor = ExecutorFactory::CreateExecutor(exec_ctx, plan);
+    // auto plan_type = plan->GetType();
 
     // Prepare the root executor
+    // AbstractExecutor代指各种executor，各种executor都有成员函数Init和Next
     executor->Init();
 
     // Execute the query plan
+    // 调用executor的init方法初始化executor，重复执行next方法，
+    // next返回true则将结果存入result_set并继续执行next, next返回false 则结束。
+    // 所以后面的任务就是实现每个executor的init和next方法
     try {
       Tuple tuple;
       RID rid;
       while (executor->Next(&tuple, &rid)) {
-        if (result_set != nullptr) {
+        // 这几个模式不修改result_set
+        // bool modify = 
+        // (plan_type != PlanType::Insert) && (plan_type != PlanType::Update) && (plan_type != PlanType::Delete);
+        if (result_set != nullptr && tuple.IsAllocated()) {  // 判断元组是否分配内存
           result_set->push_back(tuple);
         }
       }
     } catch (Exception &e) {
       // TODO(student): handle exceptions
+      LOG_DEBUG("%s", e.what());
+      return false;
     }
-
     return true;
   }
 

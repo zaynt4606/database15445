@@ -11,11 +11,9 @@
 //===----------------------------------------------------------------------===//
 
 #pragma once
-
 #include <queue>
 #include <string>
 #include <vector>
-
 #include "buffer/buffer_pool_manager.h"
 #include "concurrency/transaction.h"
 #include "container/hash/hash_function.h"
@@ -95,6 +93,15 @@ class ExtendibleHashTable {
   inline auto Hash(KeyType key) -> uint32_t;
 
   /**
+   * @brief base的power次方函数,主要解决类型的问题不直接用pow
+   *
+   * @param base
+   * @param power
+   * @return uint32_t
+   */
+  inline auto Pow(uint32_t base, uint32_t power) -> uint32_t;
+
+  /**
    * KeyToDirectoryIndex - maps a key to a directory index
    *
    * In Extendible Hashing we map a key to a directory index
@@ -160,6 +167,8 @@ class ExtendibleHashTable {
    * @param value the value that was removed
    */
   void Merge(Transaction *transaction, const KeyType &key, const ValueType &value);
+
+  bool ExtraMerge(Transaction *transaction, const KeyType &key, const ValueType &value);
 
   // member variables
   page_id_t directory_page_id_;

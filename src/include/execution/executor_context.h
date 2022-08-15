@@ -23,6 +23,7 @@
 namespace bustub {
 /**
  * ExecutorContext stores all the context necessary to run an executor.
+ * executor可以访问它在其中执行的该个context文件
  */
 class ExecutorContext {
  public:

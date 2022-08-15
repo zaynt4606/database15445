@@ -33,6 +33,7 @@ namespace bustub {
 
 auto ExecutorFactory::CreateExecutor(ExecutorContext *exec_ctx, const AbstractPlanNode *plan)
     -> std::unique_ptr<AbstractExecutor> {
+  // 根据AbstractPlanNode的成员函数GetType得到executor的类型，然后相应的创建executor
   switch (plan->GetType()) {
     // Create a new sequential scan executor
     case PlanType::SeqScan: {
