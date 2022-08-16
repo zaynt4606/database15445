@@ -22,6 +22,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/bustub_shared.dir/execution/index_scan_executor.cpp.o"
   "CMakeFiles/bustub_shared.dir/execution/insert_executor.cpp.o"
   "CMakeFiles/bustub_shared.dir/execution/limit_executor.cpp.o"
+  "CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.o"
   "CMakeFiles/bustub_shared.dir/execution/nested_index_join_executor.cpp.o"
   "CMakeFiles/bustub_shared.dir/execution/nested_loop_join_executor.cpp.o"
   "CMakeFiles/bustub_shared.dir/execution/seq_scan_executor.cpp.o"

@@ -25,6 +25,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/ubuntu/project/cmu15445/bustub-private/src/execution/index_scan_executor.cpp" "/home/ubuntu/project/cmu15445/bustub-private/build/src/CMakeFiles/bustub_shared.dir/execution/index_scan_executor.cpp.o"
   "/home/ubuntu/project/cmu15445/bustub-private/src/execution/insert_executor.cpp" "/home/ubuntu/project/cmu15445/bustub-private/build/src/CMakeFiles/bustub_shared.dir/execution/insert_executor.cpp.o"
   "/home/ubuntu/project/cmu15445/bustub-private/src/execution/limit_executor.cpp" "/home/ubuntu/project/cmu15445/bustub-private/build/src/CMakeFiles/bustub_shared.dir/execution/limit_executor.cpp.o"
+  "/home/ubuntu/project/cmu15445/bustub-private/src/execution/mock_scan_executor.cpp" "/home/ubuntu/project/cmu15445/bustub-private/build/src/CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.o"
   "/home/ubuntu/project/cmu15445/bustub-private/src/execution/nested_index_join_executor.cpp" "/home/ubuntu/project/cmu15445/bustub-private/build/src/CMakeFiles/bustub_shared.dir/execution/nested_index_join_executor.cpp.o"
   "/home/ubuntu/project/cmu15445/bustub-private/src/execution/nested_loop_join_executor.cpp" "/home/ubuntu/project/cmu15445/bustub-private/build/src/CMakeFiles/bustub_shared.dir/execution/nested_loop_join_executor.cpp.o"
   "/home/ubuntu/project/cmu15445/bustub-private/src/execution/seq_scan_executor.cpp" "/home/ubuntu/project/cmu15445/bustub-private/build/src/CMakeFiles/bustub_shared.dir/execution/seq_scan_executor.cpp.o"

@@ -38,7 +38,6 @@
 #include "test_util.h"  // NOLINT
 #include "type/value_factory.h"
 
-// Macro for time out mechanism
 #define TEST_TIMEOUT_BEGIN                           \
   std::promise<bool> promisedFinished;               \
   auto futureResult = promisedFinished.get_future(); \

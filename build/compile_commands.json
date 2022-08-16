@@ -131,6 +131,11 @@
 },
 {
   "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/src",
+  "command": "/usr/bin/c++  -Dbustub_shared_EXPORTS -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes -fPIC   -std=gnu++17 -o CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/execution/mock_scan_executor.cpp",
+  "file": "/home/ubuntu/project/cmu15445/bustub-private/src/execution/mock_scan_executor.cpp"
+},
+{
+  "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/src",
   "command": "/usr/bin/c++  -Dbustub_shared_EXPORTS -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes -fPIC   -std=gnu++17 -o CMakeFiles/bustub_shared.dir/execution/nested_index_join_executor.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/execution/nested_index_join_executor.cpp",
   "file": "/home/ubuntu/project/cmu15445/bustub-private/src/execution/nested_index_join_executor.cpp"
 },
@@ -331,16 +336,6 @@
 },
 {
   "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
-  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/starter_test.dir/primer/starter_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/primer/starter_test.cpp",
-  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/primer/starter_test.cpp"
-},
-{
-  "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
-  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_update_executor_test.dir/execution/grading_update_executor_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_update_executor_test.cpp",
-  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_update_executor_test.cpp"
-},
-{
-  "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
   "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/b_plus_tree_concurrent_test.dir/storage/b_plus_tree_concurrent_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/storage/b_plus_tree_concurrent_test.cpp",
   "file": "/home/ubuntu/project/cmu15445/bustub-private/test/storage/b_plus_tree_concurrent_test.cpp"
 },
@@ -406,6 +401,11 @@
 },
 {
   "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
+  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/hash_table_test.dir/container/hash_table_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/container/hash_table_test.cpp",
+  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/container/hash_table_test.cpp"
+},
+{
+  "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
   "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_executor_benchmark_test.dir/execution/grading_executor_benchmark_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_executor_benchmark_test.cpp",
   "file": "/home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_executor_benchmark_test.cpp"
 },
@@ -466,11 +466,6 @@
 },
 {
   "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
-  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_distinct_executor_test.dir/execution/grading_distinct_executor_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_distinct_executor_test.cpp",
-  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_distinct_executor_test.cpp"
-},
-{
-  "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
   "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_executor_integrated_test.dir/execution/grading_executor_integrated_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_executor_integrated_test.cpp",
   "file": "/home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_executor_integrated_test.cpp"
 },
@@ -481,13 +476,8 @@
 },
 {
   "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
-  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/hash_table_test.dir/container/hash_table_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/container/hash_table_test.cpp",
-  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/container/hash_table_test.cpp"
-},
-{
-  "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
-  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_limit_executor_test.dir/execution/grading_limit_executor_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_limit_executor_test.cpp",
-  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_limit_executor_test.cpp"
+  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_nested_loop_join_executor_test.cpp",
+  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_nested_loop_join_executor_test.cpp"
 },
 {
   "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
@@ -496,7 +486,12 @@
 },
 {
   "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
-  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_nested_loop_join_executor_test.cpp",
-  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_nested_loop_join_executor_test.cpp"
+  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_update_executor_test.dir/execution/grading_update_executor_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_update_executor_test.cpp",
+  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_update_executor_test.cpp"
+},
+{
+  "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
+  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/starter_test.dir/primer/starter_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/primer/starter_test.cpp",
+  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/primer/starter_test.cpp"
 }
 ]

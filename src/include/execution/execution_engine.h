@@ -81,11 +81,15 @@ class ExecutionEngine {
       RID rid;
       while (executor->Next(&tuple, &rid)) {
         // 这几个模式不修改result_set
-        // bool modify = 
-        // (plan_type != PlanType::Insert) && (plan_type != PlanType::Update) && (plan_type != PlanType::Delete);
-        if (result_set != nullptr && tuple.IsAllocated()) {  // 判断元组是否分配内存
+        auto plan_type = plan->GetType();
+        bool modify =
+            (plan_type != PlanType::Insert) && (plan_type != PlanType::Update) && (plan_type != PlanType::Delete);
+        if (result_set != nullptr && modify && tuple.IsAllocated()) {  // 判断元组是否分配内存
           result_set->push_back(tuple);
         }
+        // if (result_set != nullptr && tuple.IsAllocated()) {  // 判断元组是否分配内存
+        //   result_set->push_back(tuple);
+        // }
       }
     } catch (Exception &e) {
       // TODO(student): handle exceptions

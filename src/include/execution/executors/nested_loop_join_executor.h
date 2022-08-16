@@ -37,7 +37,7 @@ class NestedLoopJoinExecutor : public AbstractExecutor {
   NestedLoopJoinExecutor(ExecutorContext *exec_ctx, const NestedLoopJoinPlanNode *plan,
                          std::unique_ptr<AbstractExecutor> &&left_executor,
                          std::unique_ptr<AbstractExecutor> &&right_executor);
-
+  // ~NestedLoopJoinExecutor() override;
   /** Initialize the join */
   void Init() override;
 
@@ -55,6 +55,18 @@ class NestedLoopJoinExecutor : public AbstractExecutor {
  private:
   /** The NestedLoopJoin plan node to be executed. */
   const NestedLoopJoinPlanNode *plan_;
+
+  /** The left child executor to obtain value from */
+  std::unique_ptr<AbstractExecutor> left_child_executor_;
+  /** The right child executor to obtain value from */
+  std::unique_ptr<AbstractExecutor> right_child_executor_;
+  /** The current tuple of outer table */
+  Tuple left_tuple_;
+  /** The current rid of outer table */
+  RID left_rid_;
+  /** Whether the pre-select of outer table is successful */
+  bool is_left_selected_;
+
 };
 
 }  // namespace bustub

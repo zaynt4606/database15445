@@ -791,6 +791,33 @@ execution/limit_executor.cpp.s:
 	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/execution/limit_executor.cpp.s
 .PHONY : execution/limit_executor.cpp.s
 
+execution/mock_scan_executor.o: execution/mock_scan_executor.cpp.o
+
+.PHONY : execution/mock_scan_executor.o
+
+# target to build an object file
+execution/mock_scan_executor.cpp.o:
+	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.o
+.PHONY : execution/mock_scan_executor.cpp.o
+
+execution/mock_scan_executor.i: execution/mock_scan_executor.cpp.i
+
+.PHONY : execution/mock_scan_executor.i
+
+# target to preprocess a source file
+execution/mock_scan_executor.cpp.i:
+	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.i
+.PHONY : execution/mock_scan_executor.cpp.i
+
+execution/mock_scan_executor.s: execution/mock_scan_executor.cpp.s
+
+.PHONY : execution/mock_scan_executor.s
+
+# target to generate assembly for a file
+execution/mock_scan_executor.cpp.s:
+	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f src/CMakeFiles/bustub_shared.dir/build.make src/CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.s
+.PHONY : execution/mock_scan_executor.cpp.s
+
 execution/nested_index_join_executor.o: execution/nested_index_join_executor.cpp.o
 
 .PHONY : execution/nested_index_join_executor.o
@@ -1844,6 +1871,9 @@ help:
 	@echo "... execution/limit_executor.o"
 	@echo "... execution/limit_executor.i"
 	@echo "... execution/limit_executor.s"
+	@echo "... execution/mock_scan_executor.o"
+	@echo "... execution/mock_scan_executor.i"
+	@echo "... execution/mock_scan_executor.s"
 	@echo "... execution/nested_index_join_executor.o"
 	@echo "... execution/nested_index_join_executor.i"
 	@echo "... execution/nested_index_join_executor.s"

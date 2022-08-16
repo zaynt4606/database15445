@@ -15,26 +15,9 @@
 #include <unordered_set>
 
 #include "execution/executors/aggregation_executor.h"
-#include "executor_test_util.h"  // NOLINT
-#include "test_util.h"           // NOLINT
-
+#include "grading_executor_test_util.h"  // NOLINT
+#include "test_util.h"                   // NOLINT
 namespace bustub {
-
-// Parameters for index construction
-using KeyType = GenericKey<8>;
-using ValueType = RID;
-using ComparatorType = GenericComparator<8>;
-using HashFunctionType = HashFunction<KeyType>;
-
-/** Index creation parameters for a BIGINT key */
-constexpr static const auto BIGINT_SIZE = 8;
-using BigintKeyType = GenericKey<BIGINT_SIZE>;
-using BigintValueType = RID;
-using BigintComparatorType = GenericComparator<BIGINT_SIZE>;
-using BigintHashFunctionType = HashFunction<BigintKeyType>;
-
-#define GradingExecutorTest ExecutorTest
-
 // SELECT COUNT(colB) from test_3;
 TEST_F(GradingExecutorTest, AggregationCount) {
   // Construct the sequential scan
@@ -460,7 +443,7 @@ TEST_F(GradingExecutorTest, AggregationSumWithGroupBy) {
     ASSERT_GE(group_by, 0);
     ASSERT_LT(group_by, 10);
 
-    // NOTE: can't wait for effing ranges, this should be so much easier
+    // NOTE: can\'t wait for effing ranges, this should be so much easier
     std::vector<int> v(10);
     std::generate(v.begin(), v.end(), [n = group_by]() mutable {
       auto tmp = n;
@@ -497,7 +480,7 @@ TEST_F(GradingExecutorTest, AggregationWithGroupByAndHaving) {
 
     // Make aggregates
     std::vector<const AbstractExpression *> aggregate_cols{col_a};
-    std::vector<AggregationType> agg_types{AggregationType::CountAggregate, AggregationType::SumAggregate};
+    std::vector<AggregationType> agg_types{AggregationType::CountAggregate};
     const AbstractExpression *count_a = MakeAggregateValueExpression(false, 0);
 
     // Make having clause
@@ -645,5 +628,4 @@ TEST_F(GradingExecutorTest, AggregationIntegrated2) {
     ASSERT_LT(col_b, 10);
   }
 }
-
 }  // namespace bustub

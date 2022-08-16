@@ -11,25 +11,10 @@
 //===----------------------------------------------------------------------===//
 
 #include "execution/executors/seq_scan_executor.h"
-#include "executor_test_util.h"  // NOLINT
-#include "test_util.h"           // NOLINT
+#include "grading_executor_test_util.h"  // NOLINT
+#include "test_util.h"                   // NOLINT
 
 namespace bustub {
-
-// Parameters for index construction
-using KeyType = GenericKey<8>;
-using ValueType = RID;
-using ComparatorType = GenericComparator<8>;
-using HashFunctionType = HashFunction<KeyType>;
-
-/** Index creation parameters for a BIGINT key */
-constexpr static const auto BIGINT_SIZE = 8;
-using BigintKeyType = GenericKey<BIGINT_SIZE>;
-using BigintValueType = RID;
-using BigintComparatorType = GenericComparator<BIGINT_SIZE>;
-using BigintHashFunctionType = HashFunction<BigintKeyType>;
-
-#define GradingExecutorTest ExecutorTest
 
 // SELECT colA, colB FROM test_1
 TEST_F(GradingExecutorTest, SequentialScan) {

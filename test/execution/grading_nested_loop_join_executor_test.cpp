@@ -14,27 +14,11 @@
 
 #include "execution/executors/nested_loop_join_executor.h"
 #include "execution/plans/mock_scan_plan.h"
-#include "executor_test_util.h"  // NOLINT
-#include "test_util.h"           // NOLINT
-
+#include "grading_executor_test_util.h"  // NOLINT
+#include "test_util.h"                   // NOLINT
 namespace bustub {
-
-// Parameters for index construction
-using KeyType = GenericKey<8>;
-using ValueType = RID;
-using ComparatorType = GenericComparator<8>;
-using HashFunctionType = HashFunction<KeyType>;
-
-/** Index creation parameters for a BIGINT key */
-constexpr static const auto BIGINT_SIZE = 8;
-using BigintKeyType = GenericKey<BIGINT_SIZE>;
-using BigintValueType = RID;
-using BigintComparatorType = GenericComparator<BIGINT_SIZE>;
-using BigintHashFunctionType = HashFunction<BigintKeyType>;
-
-#define GradingExecutorTest ExecutorTest
-
-// SELECT test_4.colA, test_4.colB, test_6.colA, test_6.colB FROM test_4 JOIN test_6 ON test_4.colA = test_6.colA
+// SELECT test_4.colA, test_4.colB, test_6.colA, test_6.colB FROM test_4 JOIN test_6 ON test_4.colA =
+// test_6.colA
 TEST_F(GradingExecutorTest, NestedLoopJoin) {
   // Construct sequential scan of table test_4
   const Schema *out_schema1{};
@@ -103,7 +87,8 @@ TEST_F(GradingExecutorTest, NestedLoopJoin) {
   }
 }
 
-// SELECT test_5.colA, test_5.colB, test_4.colA, test_4.colB FROM test_5 JOIN test_4 ON test_5.colA = test_4.colA
+// SELECT test_5.colA, test_5.colB, test_4.colA, test_4.colB FROM test_5 JOIN test_4 ON test_5.colA =
+// test_4.colA
 TEST_F(GradingExecutorTest, NestedLoopJoinEmptyOuterTable) {
   // Construct sequential scan of table test_5
   const Schema *out_schema1{};
@@ -159,7 +144,8 @@ TEST_F(GradingExecutorTest, NestedLoopJoinEmptyOuterTable) {
   ASSERT_EQ(result_set.size(), 0);
 }
 
-// SELECT test_4.colA, test_4.colB, test_5.colA, test_5.colB FROM test_4 JOIN test_5 ON test_4.colA = test_5.colA
+// SELECT test_4.colA, test_4.colB, test_5.colA, test_5.colB FROM test_4 JOIN test_5 ON test_4.colA =
+// test_5.colA
 TEST_F(GradingExecutorTest, NestedLoopJoinEmptyInnerTable) {
   // Construct sequential scan of table test_4
   const Schema *out_schema1{};
@@ -215,7 +201,8 @@ TEST_F(GradingExecutorTest, NestedLoopJoinEmptyInnerTable) {
   ASSERT_EQ(result_set.size(), 0);
 }
 
-// SELECT test_7.colA, test_7.colB, test_8.colA, test_8.colB FROM test_7 JOIN test_8 ON test_7.colC = test_8.colB
+// SELECT test_7.colA, test_7.colB, test_8.colA, test_8.colB FROM test_7 JOIN test_8 ON test_7.colC =
+// test_8.colB
 TEST_F(GradingExecutorTest, NestedLoopJoinOuterTableDuplicateJoinKeys) {
   // Construct sequential scan of table test_7
   const Schema *out_schema1{};
@@ -278,7 +265,8 @@ TEST_F(GradingExecutorTest, NestedLoopJoinOuterTableDuplicateJoinKeys) {
   ASSERT_EQ(result_set.size(), TEST7_SIZE);
 }
 
-// SELECT test_8.colA, test_8.colB, test_7.colA, test_7.colB FROM test_8 JOIN test_7 ON test_8.colB = test_7.colC
+// SELECT test_8.colA, test_8.colB, test_7.colA, test_7.colB FROM test_8 JOIN test_7 ON test_8.colB =
+// test_7.colC
 TEST_F(GradingExecutorTest, NestedLoopJoinInnerTableDuplicateJoinKeys) {
   // Construct sequential scan of table test_8
   const Schema *out_schema1{};
@@ -341,7 +329,8 @@ TEST_F(GradingExecutorTest, NestedLoopJoinInnerTableDuplicateJoinKeys) {
   ASSERT_EQ(result_set.size(), TEST7_SIZE);
 }
 
-// SELECT test_1.colA, test_1.colB, test_3.colA, test_3.colA FROM test_1 JOIN test_3 ON test_1.colA = test_3.colA;
+// SELECT test_1.colA, test_1.colB, test_3.colA, test_3.colA FROM test_1 JOIN test_3 ON test_1.colA =
+// test_3.colA;
 TEST_F(GradingExecutorTest, NestedLoopJoinIntegrated) {
   // SELECT colA, colB FROM test_1 WHERE colA < 50;
   const Schema *table1_schema;

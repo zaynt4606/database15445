@@ -330,9 +330,22 @@ src/CMakeFiles/bustub_shared.dir/execution/limit_executor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bustub_shared.dir/execution/limit_executor.cpp.s"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/project/cmu15445/bustub-private/src/execution/limit_executor.cpp -o CMakeFiles/bustub_shared.dir/execution/limit_executor.cpp.s
 
+src/CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
+src/CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.o: ../src/execution/mock_scan_executor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object src/CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.o"
+	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/execution/mock_scan_executor.cpp
+
+src/CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.i"
+	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ubuntu/project/cmu15445/bustub-private/src/execution/mock_scan_executor.cpp > CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.i
+
+src/CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.s"
+	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ubuntu/project/cmu15445/bustub-private/src/execution/mock_scan_executor.cpp -o CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.s
+
 src/CMakeFiles/bustub_shared.dir/execution/nested_index_join_executor.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/execution/nested_index_join_executor.cpp.o: ../src/execution/nested_index_join_executor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object src/CMakeFiles/bustub_shared.dir/execution/nested_index_join_executor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object src/CMakeFiles/bustub_shared.dir/execution/nested_index_join_executor.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/execution/nested_index_join_executor.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/execution/nested_index_join_executor.cpp
 
 src/CMakeFiles/bustub_shared.dir/execution/nested_index_join_executor.cpp.i: cmake_force
@@ -345,7 +358,7 @@ src/CMakeFiles/bustub_shared.dir/execution/nested_index_join_executor.cpp.s: cma
 
 src/CMakeFiles/bustub_shared.dir/execution/nested_loop_join_executor.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/execution/nested_loop_join_executor.cpp.o: ../src/execution/nested_loop_join_executor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object src/CMakeFiles/bustub_shared.dir/execution/nested_loop_join_executor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object src/CMakeFiles/bustub_shared.dir/execution/nested_loop_join_executor.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/execution/nested_loop_join_executor.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/execution/nested_loop_join_executor.cpp
 
 src/CMakeFiles/bustub_shared.dir/execution/nested_loop_join_executor.cpp.i: cmake_force
@@ -358,7 +371,7 @@ src/CMakeFiles/bustub_shared.dir/execution/nested_loop_join_executor.cpp.s: cmak
 
 src/CMakeFiles/bustub_shared.dir/execution/seq_scan_executor.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/execution/seq_scan_executor.cpp.o: ../src/execution/seq_scan_executor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object src/CMakeFiles/bustub_shared.dir/execution/seq_scan_executor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object src/CMakeFiles/bustub_shared.dir/execution/seq_scan_executor.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/execution/seq_scan_executor.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/execution/seq_scan_executor.cpp
 
 src/CMakeFiles/bustub_shared.dir/execution/seq_scan_executor.cpp.i: cmake_force
@@ -371,7 +384,7 @@ src/CMakeFiles/bustub_shared.dir/execution/seq_scan_executor.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/execution/update_executor.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/execution/update_executor.cpp.o: ../src/execution/update_executor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object src/CMakeFiles/bustub_shared.dir/execution/update_executor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object src/CMakeFiles/bustub_shared.dir/execution/update_executor.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/execution/update_executor.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/execution/update_executor.cpp
 
 src/CMakeFiles/bustub_shared.dir/execution/update_executor.cpp.i: cmake_force
@@ -384,7 +397,7 @@ src/CMakeFiles/bustub_shared.dir/execution/update_executor.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/recovery/checkpoint_manager.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/recovery/checkpoint_manager.cpp.o: ../src/recovery/checkpoint_manager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object src/CMakeFiles/bustub_shared.dir/recovery/checkpoint_manager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object src/CMakeFiles/bustub_shared.dir/recovery/checkpoint_manager.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/recovery/checkpoint_manager.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/recovery/checkpoint_manager.cpp
 
 src/CMakeFiles/bustub_shared.dir/recovery/checkpoint_manager.cpp.i: cmake_force
@@ -397,7 +410,7 @@ src/CMakeFiles/bustub_shared.dir/recovery/checkpoint_manager.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/recovery/log_manager.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/recovery/log_manager.cpp.o: ../src/recovery/log_manager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object src/CMakeFiles/bustub_shared.dir/recovery/log_manager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object src/CMakeFiles/bustub_shared.dir/recovery/log_manager.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/recovery/log_manager.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/recovery/log_manager.cpp
 
 src/CMakeFiles/bustub_shared.dir/recovery/log_manager.cpp.i: cmake_force
@@ -410,7 +423,7 @@ src/CMakeFiles/bustub_shared.dir/recovery/log_manager.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/recovery/log_recovery.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/recovery/log_recovery.cpp.o: ../src/recovery/log_recovery.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object src/CMakeFiles/bustub_shared.dir/recovery/log_recovery.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object src/CMakeFiles/bustub_shared.dir/recovery/log_recovery.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/recovery/log_recovery.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/recovery/log_recovery.cpp
 
 src/CMakeFiles/bustub_shared.dir/recovery/log_recovery.cpp.i: cmake_force
@@ -423,7 +436,7 @@ src/CMakeFiles/bustub_shared.dir/recovery/log_recovery.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/storage/disk/disk_manager.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/disk/disk_manager.cpp.o: ../src/storage/disk/disk_manager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/disk/disk_manager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/disk/disk_manager.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/disk/disk_manager.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/disk/disk_manager.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/disk/disk_manager.cpp.i: cmake_force
@@ -436,7 +449,7 @@ src/CMakeFiles/bustub_shared.dir/storage/disk/disk_manager.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/storage/index/b_plus_tree.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/index/b_plus_tree.cpp.o: ../src/storage/index/b_plus_tree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/index/b_plus_tree.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/index/b_plus_tree.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/index/b_plus_tree.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/index/b_plus_tree.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/index/b_plus_tree.cpp.i: cmake_force
@@ -449,7 +462,7 @@ src/CMakeFiles/bustub_shared.dir/storage/index/b_plus_tree.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/storage/index/b_plus_tree_index.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/index/b_plus_tree_index.cpp.o: ../src/storage/index/b_plus_tree_index.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/index/b_plus_tree_index.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/index/b_plus_tree_index.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/index/b_plus_tree_index.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/index/b_plus_tree_index.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/index/b_plus_tree_index.cpp.i: cmake_force
@@ -462,7 +475,7 @@ src/CMakeFiles/bustub_shared.dir/storage/index/b_plus_tree_index.cpp.s: cmake_fo
 
 src/CMakeFiles/bustub_shared.dir/storage/index/extendible_hash_table_index.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/index/extendible_hash_table_index.cpp.o: ../src/storage/index/extendible_hash_table_index.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/index/extendible_hash_table_index.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/index/extendible_hash_table_index.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/index/extendible_hash_table_index.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/index/extendible_hash_table_index.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/index/extendible_hash_table_index.cpp.i: cmake_force
@@ -475,7 +488,7 @@ src/CMakeFiles/bustub_shared.dir/storage/index/extendible_hash_table_index.cpp.s
 
 src/CMakeFiles/bustub_shared.dir/storage/index/index_iterator.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/index/index_iterator.cpp.o: ../src/storage/index/index_iterator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/index/index_iterator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/index/index_iterator.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/index/index_iterator.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/index/index_iterator.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/index/index_iterator.cpp.i: cmake_force
@@ -488,7 +501,7 @@ src/CMakeFiles/bustub_shared.dir/storage/index/index_iterator.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/storage/index/linear_probe_hash_table_index.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/index/linear_probe_hash_table_index.cpp.o: ../src/storage/index/linear_probe_hash_table_index.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/index/linear_probe_hash_table_index.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/index/linear_probe_hash_table_index.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/index/linear_probe_hash_table_index.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/index/linear_probe_hash_table_index.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/index/linear_probe_hash_table_index.cpp.i: cmake_force
@@ -501,7 +514,7 @@ src/CMakeFiles/bustub_shared.dir/storage/index/linear_probe_hash_table_index.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_internal_page.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_internal_page.cpp.o: ../src/storage/page/b_plus_tree_internal_page.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_internal_page.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_internal_page.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_internal_page.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/page/b_plus_tree_internal_page.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_internal_page.cpp.i: cmake_force
@@ -514,7 +527,7 @@ src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_internal_page.cpp.s: c
 
 src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_leaf_page.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_leaf_page.cpp.o: ../src/storage/page/b_plus_tree_leaf_page.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_leaf_page.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_leaf_page.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_leaf_page.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/page/b_plus_tree_leaf_page.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_leaf_page.cpp.i: cmake_force
@@ -527,7 +540,7 @@ src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_leaf_page.cpp.s: cmake
 
 src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_page.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_page.cpp.o: ../src/storage/page/b_plus_tree_page.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_page.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_page.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_page.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/page/b_plus_tree_page.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_page.cpp.i: cmake_force
@@ -540,7 +553,7 @@ src/CMakeFiles/bustub_shared.dir/storage/page/b_plus_tree_page.cpp.s: cmake_forc
 
 src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_block_page.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_block_page.cpp.o: ../src/storage/page/hash_table_block_page.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_block_page.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_block_page.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/page/hash_table_block_page.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/page/hash_table_block_page.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_block_page.cpp.i: cmake_force
@@ -553,7 +566,7 @@ src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_block_page.cpp.s: cmake
 
 src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_bucket_page.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_bucket_page.cpp.o: ../src/storage/page/hash_table_bucket_page.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_bucket_page.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_bucket_page.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/page/hash_table_bucket_page.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/page/hash_table_bucket_page.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_bucket_page.cpp.i: cmake_force
@@ -566,7 +579,7 @@ src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_bucket_page.cpp.s: cmak
 
 src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_directory_page.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_directory_page.cpp.o: ../src/storage/page/hash_table_directory_page.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_directory_page.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_directory_page.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/page/hash_table_directory_page.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/page/hash_table_directory_page.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_directory_page.cpp.i: cmake_force
@@ -579,7 +592,7 @@ src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_directory_page.cpp.s: c
 
 src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_header_page.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_header_page.cpp.o: ../src/storage/page/hash_table_header_page.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_header_page.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_header_page.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/page/hash_table_header_page.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/page/hash_table_header_page.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_header_page.cpp.i: cmake_force
@@ -592,7 +605,7 @@ src/CMakeFiles/bustub_shared.dir/storage/page/hash_table_header_page.cpp.s: cmak
 
 src/CMakeFiles/bustub_shared.dir/storage/page/header_page.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/page/header_page.cpp.o: ../src/storage/page/header_page.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/header_page.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/header_page.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/page/header_page.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/page/header_page.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/page/header_page.cpp.i: cmake_force
@@ -605,7 +618,7 @@ src/CMakeFiles/bustub_shared.dir/storage/page/header_page.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/storage/page/table_page.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/page/table_page.cpp.o: ../src/storage/page/table_page.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/table_page.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/page/table_page.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/page/table_page.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/page/table_page.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/page/table_page.cpp.i: cmake_force
@@ -618,7 +631,7 @@ src/CMakeFiles/bustub_shared.dir/storage/page/table_page.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/storage/table/table_heap.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/table/table_heap.cpp.o: ../src/storage/table/table_heap.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/table/table_heap.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/table/table_heap.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/table/table_heap.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/table/table_heap.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/table/table_heap.cpp.i: cmake_force
@@ -631,7 +644,7 @@ src/CMakeFiles/bustub_shared.dir/storage/table/table_heap.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/storage/table/table_iterator.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/table/table_iterator.cpp.o: ../src/storage/table/table_iterator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/table/table_iterator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/table/table_iterator.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/table/table_iterator.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/table/table_iterator.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/table/table_iterator.cpp.i: cmake_force
@@ -644,7 +657,7 @@ src/CMakeFiles/bustub_shared.dir/storage/table/table_iterator.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/storage/table/tuple.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/storage/table/tuple.cpp.o: ../src/storage/table/tuple.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/table/tuple.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object src/CMakeFiles/bustub_shared.dir/storage/table/tuple.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/storage/table/tuple.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/storage/table/tuple.cpp
 
 src/CMakeFiles/bustub_shared.dir/storage/table/tuple.cpp.i: cmake_force
@@ -657,7 +670,7 @@ src/CMakeFiles/bustub_shared.dir/storage/table/tuple.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/type/bigint_type.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/type/bigint_type.cpp.o: ../src/type/bigint_type.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/bigint_type.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/bigint_type.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/type/bigint_type.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/type/bigint_type.cpp
 
 src/CMakeFiles/bustub_shared.dir/type/bigint_type.cpp.i: cmake_force
@@ -670,7 +683,7 @@ src/CMakeFiles/bustub_shared.dir/type/bigint_type.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/type/boolean_type.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/type/boolean_type.cpp.o: ../src/type/boolean_type.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/boolean_type.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/boolean_type.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/type/boolean_type.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/type/boolean_type.cpp
 
 src/CMakeFiles/bustub_shared.dir/type/boolean_type.cpp.i: cmake_force
@@ -683,7 +696,7 @@ src/CMakeFiles/bustub_shared.dir/type/boolean_type.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/type/decimal_type.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/type/decimal_type.cpp.o: ../src/type/decimal_type.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/decimal_type.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/decimal_type.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/type/decimal_type.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/type/decimal_type.cpp
 
 src/CMakeFiles/bustub_shared.dir/type/decimal_type.cpp.i: cmake_force
@@ -696,7 +709,7 @@ src/CMakeFiles/bustub_shared.dir/type/decimal_type.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/type/integer_parent_type.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/type/integer_parent_type.cpp.o: ../src/type/integer_parent_type.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/integer_parent_type.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/integer_parent_type.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/type/integer_parent_type.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/type/integer_parent_type.cpp
 
 src/CMakeFiles/bustub_shared.dir/type/integer_parent_type.cpp.i: cmake_force
@@ -709,7 +722,7 @@ src/CMakeFiles/bustub_shared.dir/type/integer_parent_type.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/type/integer_type.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/type/integer_type.cpp.o: ../src/type/integer_type.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/integer_type.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/integer_type.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/type/integer_type.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/type/integer_type.cpp
 
 src/CMakeFiles/bustub_shared.dir/type/integer_type.cpp.i: cmake_force
@@ -722,7 +735,7 @@ src/CMakeFiles/bustub_shared.dir/type/integer_type.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/type/smallint_type.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/type/smallint_type.cpp.o: ../src/type/smallint_type.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/smallint_type.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/smallint_type.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/type/smallint_type.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/type/smallint_type.cpp
 
 src/CMakeFiles/bustub_shared.dir/type/smallint_type.cpp.i: cmake_force
@@ -735,7 +748,7 @@ src/CMakeFiles/bustub_shared.dir/type/smallint_type.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/type/timestamp_type.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/type/timestamp_type.cpp.o: ../src/type/timestamp_type.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/timestamp_type.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/timestamp_type.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/type/timestamp_type.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/type/timestamp_type.cpp
 
 src/CMakeFiles/bustub_shared.dir/type/timestamp_type.cpp.i: cmake_force
@@ -748,7 +761,7 @@ src/CMakeFiles/bustub_shared.dir/type/timestamp_type.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/type/tinyint_type.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/type/tinyint_type.cpp.o: ../src/type/tinyint_type.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/tinyint_type.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/tinyint_type.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/type/tinyint_type.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/type/tinyint_type.cpp
 
 src/CMakeFiles/bustub_shared.dir/type/tinyint_type.cpp.i: cmake_force
@@ -761,7 +774,7 @@ src/CMakeFiles/bustub_shared.dir/type/tinyint_type.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/type/type.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/type/type.cpp.o: ../src/type/type.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/type.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/type.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/type/type.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/type/type.cpp
 
 src/CMakeFiles/bustub_shared.dir/type/type.cpp.i: cmake_force
@@ -774,7 +787,7 @@ src/CMakeFiles/bustub_shared.dir/type/type.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/type/value.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/type/value.cpp.o: ../src/type/value.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/value.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/value.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/type/value.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/type/value.cpp
 
 src/CMakeFiles/bustub_shared.dir/type/value.cpp.i: cmake_force
@@ -787,7 +800,7 @@ src/CMakeFiles/bustub_shared.dir/type/value.cpp.s: cmake_force
 
 src/CMakeFiles/bustub_shared.dir/type/varlen_type.cpp.o: src/CMakeFiles/bustub_shared.dir/flags.make
 src/CMakeFiles/bustub_shared.dir/type/varlen_type.cpp.o: ../src/type/varlen_type.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/varlen_type.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building CXX object src/CMakeFiles/bustub_shared.dir/type/varlen_type.cpp.o"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/bustub_shared.dir/type/varlen_type.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/src/type/varlen_type.cpp
 
 src/CMakeFiles/bustub_shared.dir/type/varlen_type.cpp.i: cmake_force
@@ -821,6 +834,7 @@ bustub_shared_OBJECTS = \
 "CMakeFiles/bustub_shared.dir/execution/index_scan_executor.cpp.o" \
 "CMakeFiles/bustub_shared.dir/execution/insert_executor.cpp.o" \
 "CMakeFiles/bustub_shared.dir/execution/limit_executor.cpp.o" \
+"CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.o" \
 "CMakeFiles/bustub_shared.dir/execution/nested_index_join_executor.cpp.o" \
 "CMakeFiles/bustub_shared.dir/execution/nested_loop_join_executor.cpp.o" \
 "CMakeFiles/bustub_shared.dir/execution/seq_scan_executor.cpp.o" \
@@ -882,6 +896,7 @@ lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/execution/hash_join_ex
 lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/execution/index_scan_executor.cpp.o
 lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/execution/insert_executor.cpp.o
 lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/execution/limit_executor.cpp.o
+lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/execution/mock_scan_executor.cpp.o
 lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/execution/nested_index_join_executor.cpp.o
 lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/execution/nested_loop_join_executor.cpp.o
 lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/execution/seq_scan_executor.cpp.o
@@ -921,7 +936,7 @@ lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/type/varlen_type.cpp.o
 lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/build.make
 lib/libbustub_shared.so: lib/libthirdparty_murmur3.so
 lib/libbustub_shared.so: src/CMakeFiles/bustub_shared.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Linking CXX shared library ../lib/libbustub_shared.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ubuntu/project/cmu15445/bustub-private/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Linking CXX shared library ../lib/libbustub_shared.so"
 	cd /home/ubuntu/project/cmu15445/bustub-private/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/bustub_shared.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

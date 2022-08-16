@@ -20,8 +20,7 @@ UpdateExecutor::UpdateExecutor(ExecutorContext *exec_ctx, const UpdatePlanNode *
     : AbstractExecutor(exec_ctx),
       plan_(plan),
       table_info_(exec_ctx->GetCatalog()->GetTable(plan->TableOid())),
-      child_executor_(std::move(child_executor)){}
-      
+      child_executor_(std::move(child_executor)) {}
 
 void UpdateExecutor::Init() {
   // exec_ctx_ 是abstract_executor的成员，上面的构造函数用exec_ctx来构造了AbstractExecutor
@@ -40,7 +39,7 @@ auto UpdateExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
   if (res) {
     update_tuple = GenerateUpdatedTuple(child_tuple);
     update_rid = update_tuple.GetRid();
-    
+
     if (transaction->GetIsolationLevel() == IsolationLevel::REPEATABLE_READ) {
       lockmanager->LockUpgrade(transaction, child_rid);  // 之前查询获取了读锁，现在需要将锁升级
     } else {
@@ -51,12 +50,12 @@ auto UpdateExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
     table_info_->table_->UpdateTuple(update_tuple, child_rid, exec_ctx_->GetTransaction());
 
     // 修改所有索引
-    for (auto& index_info : index_info_vec_) {
+    for (auto &index_info : index_info_vec_) {
       // index删掉旧的，插入新的, rid都是child_executor输出tuple的rid
-      auto old_key_tuple = child_tuple.KeyFromTuple(table_info_->schema_, 
-                                                    index_info->key_schema_, index_info->index_->GetKeyAttrs());
-      auto new_key_tuple = update_tuple.KeyFromTuple(table_info_->schema_,
-                                                     index_info->key_schema_, index_info->index_->GetKeyAttrs());
+      auto old_key_tuple =
+          child_tuple.KeyFromTuple(table_info_->schema_, index_info->key_schema_, index_info->index_->GetKeyAttrs());
+      auto new_key_tuple =
+          update_tuple.KeyFromTuple(table_info_->schema_, index_info->key_schema_, index_info->index_->GetKeyAttrs());
       index_info->index_->DeleteEntry(old_key_tuple, child_rid, exec_ctx_->GetTransaction());
       index_info->index_->InsertEntry(new_key_tuple, child_rid, exec_ctx_->GetTransaction());
     }
