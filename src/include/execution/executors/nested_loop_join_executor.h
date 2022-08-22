@@ -66,7 +66,6 @@ class NestedLoopJoinExecutor : public AbstractExecutor {
   RID left_rid_;
   /** Whether the pre-select of outer table is successful */
   bool is_left_selected_;
-
 };
 
 }  // namespace bustub

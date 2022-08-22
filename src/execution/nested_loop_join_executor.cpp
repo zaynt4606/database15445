@@ -43,14 +43,17 @@ bool NestedLoopJoinExecutor::Next(Tuple *tuple, RID *rid) {
     // right没有到尾就下一个
     while (!right_child_executor_->Next(&right_tuple, &right_rid)) {
       // left到达了末尾，结束执行
-      if (!left_child_executor_->Next(&left_tuple_, &left_rid_)) {return false;}
+      if (!left_child_executor_->Next(&left_tuple_, &left_rid_)) {
+        return false;
+      }
       // right的Init里面有left会下一个
       right_child_executor_->Init();
     }
     auto predicate = plan_->Predicate();
-    auto value_res = predicate->EvaluateJoin(&left_tuple_, left_child_executor_->GetOutputSchema(), 
-                                          &right_tuple, right_child_executor_->GetOutputSchema())
-                                          .GetAs<bool>();
+    auto value_res = predicate
+                         ->EvaluateJoin(&left_tuple_, left_child_executor_->GetOutputSchema(), &right_tuple,
+                                        right_child_executor_->GetOutputSchema())
+                         .GetAs<bool>();
     if (value_res) {
       std::vector<Value> values;
       values.reserve(plan_->OutputSchema()->GetColumnCount());

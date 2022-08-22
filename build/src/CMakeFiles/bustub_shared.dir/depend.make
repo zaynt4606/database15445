@@ -473,6 +473,7 @@ src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/incl
 src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/common/macros.h
 src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/common/rid.h
 src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/common/rwlatch.h
+src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/common/util/hash_util.h
 src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/concurrency/lock_manager.h
 src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/concurrency/transaction.h
 src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/container/hash/extendible_hash_table.h
@@ -480,6 +481,8 @@ src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/incl
 src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/execution/executor_context.h
 src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/execution/executors/abstract_executor.h
 src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/execution/executors/hash_join_executor.h
+src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/execution/expressions/abstract_expression.h
+src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/execution/expressions/column_value_expression.h
 src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/execution/plans/abstract_plan.h
 src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/execution/plans/hash_join_plan.h
 src/CMakeFiles/bustub_shared.dir/execution/hash_join_executor.cpp.o: ../src/include/recovery/log_manager.h
