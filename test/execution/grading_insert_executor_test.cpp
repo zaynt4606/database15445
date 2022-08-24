@@ -11,7 +11,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "execution/executors/insert_executor.h"
-#include "grading_executor_test_util.h"  // NOLINT
+#include "executor_test_util.h"  // NOLINT
 #include "storage/table/tuple.h"
 #include "test_util.h"  // NOLINT
 
@@ -20,6 +20,21 @@
 // when BIGINT keys are used...
 
 namespace bustub {
+
+// Parameters for index construction
+using KeyType = GenericKey<8>;
+using ValueType = RID;
+using ComparatorType = GenericComparator<8>;
+using HashFunctionType = HashFunction<KeyType>;
+
+/** Index creation parameters for a BIGINT key */
+constexpr static const auto BIGINT_SIZE = 8;
+using BigintKeyType = GenericKey<BIGINT_SIZE>;
+using BigintValueType = RID;
+using BigintComparatorType = GenericComparator<BIGINT_SIZE>;
+using BigintHashFunctionType = HashFunction<BigintKeyType>;
+
+#define GradingExecutorTest ExecutorTest
 
 // INSERT INTO empty_table2 VALUES (100, 10), (101, 11), (102, 12)
 TEST_F(GradingExecutorTest, RawInsert1) {
@@ -69,22 +84,21 @@ TEST_F(GradingExecutorTest, RawInsert1) {
 // INSERT INTO empty_table2 VALUES (200, 20), (201, 21), (202, 22)
 TEST_F(GradingExecutorTest, RawInsert2) {
   // Create Values to insert
-  std::vector<Value> val1{ValueFactory::GetBigIntValue(200), ValueFactory::GetIntegerValue(20)};
-  std::vector<Value> val2{ValueFactory::GetBigIntValue(201), ValueFactory::GetIntegerValue(21)};
-  std::vector<Value> val3{ValueFactory::GetBigIntValue(202), ValueFactory::GetIntegerValue(22)};
+  std::vector<Value> val1{ValueFactory::GetIntegerValue(200), ValueFactory::GetIntegerValue(20)};
+  std::vector<Value> val2{ValueFactory::GetIntegerValue(201), ValueFactory::GetIntegerValue(21)};
+  std::vector<Value> val3{ValueFactory::GetIntegerValue(202), ValueFactory::GetIntegerValue(22)};
   std::vector<std::vector<Value>> raw_vals{val1, val2, val3};
 
   // Create insert plan node
-  auto table_info = GetExecutorContext()->GetCatalog()->GetTable("empty_table3");
+  auto table_info = GetExecutorContext()->GetCatalog()->GetTable("empty_table2");
   InsertPlanNode insert_plan{std::move(raw_vals), table_info->oid_};
 
   auto key_schema = ParseCreateStatement("a bigint");
   auto *index_info =
       GetExecutorContext()->GetCatalog()->CreateIndex<BigintKeyType, BigintValueType, BigintComparatorType>(
-          GetTxn(), "index1", "empty_table3", table_info->schema_, *key_schema, {0}, BIGINT_SIZE,
+          GetTxn(), "index1", "empty_table2", table_info->schema_, *key_schema, {0}, BIGINT_SIZE,
           BigintHashFunctionType{});
   ASSERT_NE(Catalog::NULL_INDEX_INFO, index_info);
-  auto *index = index_info->index_.get();
 
   // Execute the insert
   std::vector<Tuple> result_set{};
@@ -109,35 +123,31 @@ TEST_F(GradingExecutorTest, RawInsert2) {
   ASSERT_EQ(3, result_set.size());
 
   // First value
-  ASSERT_EQ(result_set[0].GetValue(out_schema, out_schema->GetColIdx("colA")).GetAs<int64_t>(), 200);
+  ASSERT_EQ(result_set[0].GetValue(out_schema, out_schema->GetColIdx("colA")).GetAs<int32_t>(), 200);
   ASSERT_EQ(result_set[0].GetValue(out_schema, out_schema->GetColIdx("colB")).GetAs<int32_t>(), 20);
 
   // Second value
-  ASSERT_EQ(result_set[1].GetValue(out_schema, out_schema->GetColIdx("colA")).GetAs<int64_t>(), 201);
+  ASSERT_EQ(result_set[1].GetValue(out_schema, out_schema->GetColIdx("colA")).GetAs<int32_t>(), 201);
   ASSERT_EQ(result_set[1].GetValue(out_schema, out_schema->GetColIdx("colB")).GetAs<int32_t>(), 21);
 
   // Third value
-  ASSERT_EQ(result_set[2].GetValue(out_schema, out_schema->GetColIdx("colA")).GetAs<int64_t>(), 202);
+  ASSERT_EQ(result_set[2].GetValue(out_schema, out_schema->GetColIdx("colA")).GetAs<int32_t>(), 202);
   ASSERT_EQ(result_set[2].GetValue(out_schema, out_schema->GetColIdx("colB")).GetAs<int32_t>(), 22);
 
   // Get RID from index, fetch tuple and then compare
   std::vector<RID> rids{};
-  for (auto &tuple : result_set) {
+  for (size_t i = 0; i < result_set.size(); ++i) {
     // Scan the index for the RID(s) associated with the tuple
-    const Tuple key = tuple.KeyFromTuple(table_info->schema_, index_info->key_schema_, index->GetKeyAttrs());
-    index->ScanKey(key, &rids, GetTxn());
-    ASSERT_EQ(1, rids.size());
+    index_info->index_->ScanKey(result_set[i], &rids, GetTxn());
 
     // Fetch the tuple from the table
     Tuple indexed_tuple;
-    ASSERT_TRUE(table_info->table_->GetTuple(rids.front(), &indexed_tuple, GetTxn()));
+    ASSERT_TRUE(table_info->table_->GetTuple(rids[i], &indexed_tuple, GetTxn()));
 
-    ASSERT_EQ(indexed_tuple.GetValue(out_schema, out_schema->GetColIdx("colA")).GetAs<int64_t>(),
-              tuple.GetValue(out_schema, out_schema->GetColIdx("colA")).GetAs<int64_t>());
+    ASSERT_EQ(indexed_tuple.GetValue(out_schema, out_schema->GetColIdx("colA")).GetAs<int32_t>(),
+              result_set[i].GetValue(out_schema, out_schema->GetColIdx("colA")).GetAs<int32_t>());
     ASSERT_EQ(indexed_tuple.GetValue(out_schema, out_schema->GetColIdx("colB")).GetAs<int32_t>(),
-              tuple.GetValue(out_schema, out_schema->GetColIdx("colB")).GetAs<int32_t>());
-
-    rids.clear();
+              result_set[i].GetValue(out_schema, out_schema->GetColIdx("colB")).GetAs<int32_t>());
   }
 }
 

@@ -14,6 +14,7 @@
 
 #include <memory>
 #include <utility>
+#include <vector>
 
 #include "execution/executor_context.h"
 #include "execution/executors/abstract_executor.h"
@@ -53,7 +54,7 @@ class InsertExecutor : public AbstractExecutor {
    */
   auto Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool override;
 
-  auto Insert(Tuple &tuple, RID *rid) -> bool;
+  auto Insert(Tuple *tuple, RID *rid) -> bool;
 
   /** @return The output schema for the insert */
   auto GetOutputSchema() -> const Schema * override { return plan_->OutputSchema(); };

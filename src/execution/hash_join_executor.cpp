@@ -73,7 +73,6 @@ bool HashJoinExecutor::Next(Tuple *tuple, RID *rid) {
     }
   }
 
-
   std::vector<Value> values;
   // 得到key对应的tuple的vector<value>
   values.reserve(plan_->OutputSchema()->GetColumnCount());

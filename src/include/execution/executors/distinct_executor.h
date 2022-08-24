@@ -13,8 +13,13 @@
 #pragma once
 
 #include <memory>
+#include <set>
+#include <unordered_map>
+#include <unordered_set>
 #include <utility>
+#include <vector>
 
+#include "common/util/hash_util.h"
 #include "execution/executors/abstract_executor.h"
 #include "execution/plans/distinct_plan.h"
 
@@ -49,9 +54,15 @@ class DistinctExecutor : public AbstractExecutor {
   auto GetOutputSchema() -> const Schema * override { return plan_->OutputSchema(); };
 
  private:
+  struct SetComparator {  // 重载set的key值排序方式
+    bool operator()(const Tuple &t1, const Tuple &t2) const { return strcmp(t1.GetData(), t2.GetData()) < 0; }
+  };
   /** The distinct plan node to be executed */
   const DistinctPlanNode *plan_;
   /** The child executor from which tuples are obtained */
   std::unique_ptr<AbstractExecutor> child_executor_;
+
+  std::set<Tuple, SetComparator> tuples_;
+  std::set<Tuple, SetComparator>::const_iterator tuples_iter_;
 };
 }  // namespace bustub

@@ -57,12 +57,11 @@ auto SeqScanExecutor::Next(Tuple *tuple, RID *rid) -> bool {
     if (plan_->GetPredicate() == nullptr) {
       table_iter_++;
       return true;
-    } else {
-      if (plan_->GetPredicate()->Evaluate(tuple, plan_->OutputSchema()).GetAs<bool>()) {
-        // Evaluate返回Value类型的结果，将其转化为bool型判断是否满足表达式的条件
-        table_iter_++;
-        return true;
-      }
+    }
+    if (plan_->GetPredicate()->Evaluate(tuple, plan_->OutputSchema()).GetAs<bool>()) {
+      // Evaluate返回Value类型的结果，将其转化为bool型判断是否满足表达式的条件
+      table_iter_++;
+      return true;
     }
   }
   return false;

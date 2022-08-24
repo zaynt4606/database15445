@@ -29,12 +29,28 @@
 #include "execution/plans/nested_index_join_plan.h"
 #include "execution/plans/seq_scan_plan.h"
 #include "execution/plans/update_plan.h"
-#include "grading_executor_test_util.h"  // NOLINT
+#include "executor_test_util.h"  // NOLINT
 #include "gtest/gtest.h"
 #include "test_util.h"  // NOLINT
 #include "type/value_factory.h"
 
 namespace bustub {
+
+// Parameters for index construction
+using KeyType = GenericKey<8>;
+using ValueType = RID;
+using ComparatorType = GenericComparator<8>;
+using HashFunctionType = HashFunction<KeyType>;
+
+/** Index creation parameters for a BIGINT key */
+constexpr static const auto BIGINT_SIZE = 8;
+using BigintKeyType = GenericKey<BIGINT_SIZE>;
+using BigintValueType = RID;
+using BigintComparatorType = GenericComparator<BIGINT_SIZE>;
+using BigintHashFunctionType = HashFunction<BigintKeyType>;
+
+#define GradingExecutorTest ExecutorTest
+
 // Scan -> Nested Loop Join -> Aggregation
 TEST_F(GradingExecutorTest, Integrated1) {
   const Schema *table1_schema;

@@ -14,6 +14,7 @@
 #include "execution/expressions/column_value_expression.h"
 #include "execution/expressions/comparison_expression.h"
 #include "execution/expressions/constant_value_expression.h"
+#include "type/value_factory.h"
 
 namespace bustub {
 
@@ -23,43 +24,53 @@ NestedLoopJoinExecutor::NestedLoopJoinExecutor(ExecutorContext *exec_ctx, const 
     : AbstractExecutor(exec_ctx),
       plan_(plan),
       left_child_executor_(std::move(left_executor)),
-      right_child_executor_(std::move(right_executor)) {}
+      right_child_executor_(std::move(right_executor)) {
+  if (plan_->Predicate() != nullptr) {
+    predicate_ = plan_->Predicate();
+  } else {
+    is_alloc_ = true;
+    predicate_ = new ConstantValueExpression(ValueFactory::GetBooleanValue(true));
+  }
+}
+
+NestedLoopJoinExecutor::~NestedLoopJoinExecutor() {
+  if (is_alloc_) {
+    delete predicate_;
+  }
+  predicate_ = nullptr;
+}
 
 void NestedLoopJoinExecutor::Init() {
   left_child_executor_->Init();
   right_child_executor_->Init();
-  // left先执行一次，
   is_left_selected_ = left_child_executor_->Next(&left_tuple_, &left_rid_);
 }
 
 bool NestedLoopJoinExecutor::Next(Tuple *tuple, RID *rid) {
-  // left要是空，直接结束
   if (!is_left_selected_) {
     return false;
   }
   Tuple right_tuple;
   RID right_rid;
   while (true) {
-    // right没有到尾就下一个
     while (!right_child_executor_->Next(&right_tuple, &right_rid)) {
-      // left到达了末尾，结束执行
       if (!left_child_executor_->Next(&left_tuple_, &left_rid_)) {
         return false;
       }
-      // right的Init里面有left会下一个
       right_child_executor_->Init();
     }
-    auto predicate = plan_->Predicate();
-    auto value_res = predicate
-                         ->EvaluateJoin(&left_tuple_, left_child_executor_->GetOutputSchema(), &right_tuple,
-                                        right_child_executor_->GetOutputSchema())
-                         .GetAs<bool>();
-    if (value_res) {
+    auto value = predicate_->EvaluateJoin(&left_tuple_, plan_->GetLeftPlan()->OutputSchema(), &right_tuple,
+                                          plan_->GetRightPlan()->OutputSchema());
+    if (value.GetAs<bool>()) {
       std::vector<Value> values;
       values.reserve(plan_->OutputSchema()->GetColumnCount());
       for (const auto &column : plan_->OutputSchema()->GetColumns()) {
-        values.emplace_back(column.GetExpr()->EvaluateJoin(&left_tuple_, left_child_executor_->GetOutputSchema(),
-                                                           &right_tuple, right_child_executor_->GetOutputSchema()));
+        auto column_expr = reinterpret_cast<const ColumnValueExpression *>(column.GetExpr());
+        if (column_expr->GetTupleIdx() == 0) {
+          values.push_back(left_tuple_.GetValue(plan_->GetLeftPlan()->OutputSchema(), column_expr->GetColIdx()));
+        } else {
+          values.push_back(right_tuple.GetValue(plan_->GetRightPlan()->OutputSchema(), column_expr->GetColIdx()));
+        }
       }
       *tuple = Tuple(values, plan_->OutputSchema());
       *rid = left_tuple_.GetRid();

@@ -60,8 +60,8 @@ void DeleteExecutor::Init() {
 auto DeleteExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
   auto transaction = exec_ctx_->GetTransaction();
   auto lockmanager = exec_ctx_->GetLockManager();
-  auto table_oid = plan_->TableOid();
-  auto catalog = exec_ctx_->GetCatalog();
+  // auto table_oid = plan_->TableOid();
+  // auto catalog = exec_ctx_->GetCatalog();
 
   auto table_schema = table_info_->schema_;
   Tuple child_tuple;
@@ -84,9 +84,9 @@ auto DeleteExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
     for (auto info : index_info_) {  // 更新索引
       key_tuple = child_tuple.KeyFromTuple(table_schema, info->key_schema_, info->index_->GetKeyAttrs());
       info->index_->DeleteEntry(key_tuple, child_rid, transaction);
-      transaction->AppendIndexWriteRecord(IndexWriteRecord{child_rid, table_oid, WType::DELETE, child_tuple,
-                                                           child_tuple, info->index_oid_,
-                                                           catalog});  // 维护IndexWriteSet
+      // transaction->AppendIndexWriteRecord(IndexWriteRecord{child_rid, table_oid, WType::DELETE, child_tuple,
+      //                                                      child_tuple, info->index_oid_,
+      //                                                      catalog});  // 维护IndexWriteSet
     }
   }
   return res;
