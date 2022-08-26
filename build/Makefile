@@ -402,19 +402,6 @@ grading_hash_join_executor_test/fast:
 .PHONY : grading_hash_join_executor_test/fast
 
 #=============================================================================
-# Target rules for targets named grading_executor_benchmark_test
-
-# Build rule for target.
-grading_executor_benchmark_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_executor_benchmark_test
-.PHONY : grading_executor_benchmark_test
-
-# fast build rule for target.
-grading_executor_benchmark_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_executor_benchmark_test.dir/build.make test/CMakeFiles/grading_executor_benchmark_test.dir/build
-.PHONY : grading_executor_benchmark_test/fast
-
-#=============================================================================
 # Target rules for targets named grading_lock_manager_prevention_test
 
 # Build rule for target.
@@ -467,19 +454,6 @@ grading_lock_manager_1_test/fast:
 .PHONY : grading_lock_manager_1_test/fast
 
 #=============================================================================
-# Target rules for targets named grading_lock_manager_detection_test
-
-# Build rule for target.
-grading_lock_manager_detection_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_lock_manager_detection_test
-.PHONY : grading_lock_manager_detection_test
-
-# fast build rule for target.
-grading_lock_manager_detection_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_lock_manager_detection_test.dir/build.make test/CMakeFiles/grading_lock_manager_detection_test.dir/build
-.PHONY : grading_lock_manager_detection_test/fast
-
-#=============================================================================
 # Target rules for targets named b_plus_tree_insert_test
 
 # Build rule for target.
@@ -530,6 +504,32 @@ parallel_buffer_pool_manager_test: cmake_check_build_system
 parallel_buffer_pool_manager_test/fast:
 	$(MAKE) -f test/CMakeFiles/parallel_buffer_pool_manager_test.dir/build.make test/CMakeFiles/parallel_buffer_pool_manager_test.dir/build
 .PHONY : parallel_buffer_pool_manager_test/fast
+
+#=============================================================================
+# Target rules for targets named grading_sequential_scan_executor_test
+
+# Build rule for target.
+grading_sequential_scan_executor_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_sequential_scan_executor_test
+.PHONY : grading_sequential_scan_executor_test
+
+# fast build rule for target.
+grading_sequential_scan_executor_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_sequential_scan_executor_test.dir/build.make test/CMakeFiles/grading_sequential_scan_executor_test.dir/build
+.PHONY : grading_sequential_scan_executor_test/fast
+
+#=============================================================================
+# Target rules for targets named grading_rollback_test
+
+# Build rule for target.
+grading_rollback_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_rollback_test
+.PHONY : grading_rollback_test
+
+# fast build rule for target.
+grading_rollback_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_rollback_test.dir/build.make test/CMakeFiles/grading_rollback_test.dir/build
+.PHONY : grading_rollback_test/fast
 
 #=============================================================================
 # Target rules for targets named grading_lock_manager_3_test
@@ -686,32 +686,6 @@ grading_aggregation_executor_test: cmake_check_build_system
 grading_aggregation_executor_test/fast:
 	$(MAKE) -f test/CMakeFiles/grading_aggregation_executor_test.dir/build.make test/CMakeFiles/grading_aggregation_executor_test.dir/build
 .PHONY : grading_aggregation_executor_test/fast
-
-#=============================================================================
-# Target rules for targets named grading_sequential_scan_executor_test
-
-# Build rule for target.
-grading_sequential_scan_executor_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_sequential_scan_executor_test
-.PHONY : grading_sequential_scan_executor_test
-
-# fast build rule for target.
-grading_sequential_scan_executor_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_sequential_scan_executor_test.dir/build.make test/CMakeFiles/grading_sequential_scan_executor_test.dir/build
-.PHONY : grading_sequential_scan_executor_test/fast
-
-#=============================================================================
-# Target rules for targets named grading_rollback_test
-
-# Build rule for target.
-grading_rollback_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_rollback_test
-.PHONY : grading_rollback_test
-
-# fast build rule for target.
-grading_rollback_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_rollback_test.dir/build.make test/CMakeFiles/grading_rollback_test.dir/build
-.PHONY : grading_rollback_test/fast
 
 #=============================================================================
 # Target rules for targets named grading_transaction_test
@@ -939,16 +913,16 @@ help:
 	@echo "... grading_update_executor_test"
 	@echo "... grading_nested_loop_join_executor_test"
 	@echo "... grading_hash_join_executor_test"
-	@echo "... grading_executor_benchmark_test"
 	@echo "... grading_lock_manager_prevention_test"
 	@echo "... grading_lock_manager_2_test"
 	@echo "... grading_insert_executor_test"
 	@echo "... grading_lock_manager_1_test"
-	@echo "... grading_lock_manager_detection_test"
 	@echo "... b_plus_tree_insert_test"
 	@echo "... clock_replacer_test"
 	@echo "... type_test"
 	@echo "... parallel_buffer_pool_manager_test"
+	@echo "... grading_sequential_scan_executor_test"
+	@echo "... grading_rollback_test"
 	@echo "... grading_lock_manager_3_test"
 	@echo "... check-tests"
 	@echo "... grading_limit_executor_test"
@@ -961,8 +935,6 @@ help:
 	@echo "... grading_hash_table_verification_test"
 	@echo "... build-tests"
 	@echo "... grading_aggregation_executor_test"
-	@echo "... grading_sequential_scan_executor_test"
-	@echo "... grading_rollback_test"
 	@echo "... grading_transaction_test"
 	@echo "... hash_table_page_test"
 	@echo "... grading_hash_table_concurrent_test"

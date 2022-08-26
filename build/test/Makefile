@@ -80,6 +80,16 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -90,16 +100,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -288,21 +288,6 @@ grading_hash_join_executor_test/fast:
 .PHONY : grading_hash_join_executor_test/fast
 
 # Convenience name for target.
-test/CMakeFiles/grading_executor_benchmark_test.dir/rule:
-	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/grading_executor_benchmark_test.dir/rule
-.PHONY : test/CMakeFiles/grading_executor_benchmark_test.dir/rule
-
-# Convenience name for target.
-grading_executor_benchmark_test: test/CMakeFiles/grading_executor_benchmark_test.dir/rule
-
-.PHONY : grading_executor_benchmark_test
-
-# fast build rule for target.
-grading_executor_benchmark_test/fast:
-	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_executor_benchmark_test.dir/build.make test/CMakeFiles/grading_executor_benchmark_test.dir/build
-.PHONY : grading_executor_benchmark_test/fast
-
-# Convenience name for target.
 test/CMakeFiles/grading_lock_manager_prevention_test.dir/rule:
 	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/grading_lock_manager_prevention_test.dir/rule
 .PHONY : test/CMakeFiles/grading_lock_manager_prevention_test.dir/rule
@@ -363,21 +348,6 @@ grading_lock_manager_1_test/fast:
 .PHONY : grading_lock_manager_1_test/fast
 
 # Convenience name for target.
-test/CMakeFiles/grading_lock_manager_detection_test.dir/rule:
-	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/grading_lock_manager_detection_test.dir/rule
-.PHONY : test/CMakeFiles/grading_lock_manager_detection_test.dir/rule
-
-# Convenience name for target.
-grading_lock_manager_detection_test: test/CMakeFiles/grading_lock_manager_detection_test.dir/rule
-
-.PHONY : grading_lock_manager_detection_test
-
-# fast build rule for target.
-grading_lock_manager_detection_test/fast:
-	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_lock_manager_detection_test.dir/build.make test/CMakeFiles/grading_lock_manager_detection_test.dir/build
-.PHONY : grading_lock_manager_detection_test/fast
-
-# Convenience name for target.
 test/CMakeFiles/b_plus_tree_insert_test.dir/rule:
 	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/b_plus_tree_insert_test.dir/rule
 .PHONY : test/CMakeFiles/b_plus_tree_insert_test.dir/rule
@@ -436,6 +406,36 @@ parallel_buffer_pool_manager_test: test/CMakeFiles/parallel_buffer_pool_manager_
 parallel_buffer_pool_manager_test/fast:
 	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/parallel_buffer_pool_manager_test.dir/build.make test/CMakeFiles/parallel_buffer_pool_manager_test.dir/build
 .PHONY : parallel_buffer_pool_manager_test/fast
+
+# Convenience name for target.
+test/CMakeFiles/grading_sequential_scan_executor_test.dir/rule:
+	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/grading_sequential_scan_executor_test.dir/rule
+.PHONY : test/CMakeFiles/grading_sequential_scan_executor_test.dir/rule
+
+# Convenience name for target.
+grading_sequential_scan_executor_test: test/CMakeFiles/grading_sequential_scan_executor_test.dir/rule
+
+.PHONY : grading_sequential_scan_executor_test
+
+# fast build rule for target.
+grading_sequential_scan_executor_test/fast:
+	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_sequential_scan_executor_test.dir/build.make test/CMakeFiles/grading_sequential_scan_executor_test.dir/build
+.PHONY : grading_sequential_scan_executor_test/fast
+
+# Convenience name for target.
+test/CMakeFiles/grading_rollback_test.dir/rule:
+	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/grading_rollback_test.dir/rule
+.PHONY : test/CMakeFiles/grading_rollback_test.dir/rule
+
+# Convenience name for target.
+grading_rollback_test: test/CMakeFiles/grading_rollback_test.dir/rule
+
+.PHONY : grading_rollback_test
+
+# fast build rule for target.
+grading_rollback_test/fast:
+	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_rollback_test.dir/build.make test/CMakeFiles/grading_rollback_test.dir/build
+.PHONY : grading_rollback_test/fast
 
 # Convenience name for target.
 test/CMakeFiles/grading_lock_manager_3_test.dir/rule:
@@ -616,36 +616,6 @@ grading_aggregation_executor_test: test/CMakeFiles/grading_aggregation_executor_
 grading_aggregation_executor_test/fast:
 	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_aggregation_executor_test.dir/build.make test/CMakeFiles/grading_aggregation_executor_test.dir/build
 .PHONY : grading_aggregation_executor_test/fast
-
-# Convenience name for target.
-test/CMakeFiles/grading_sequential_scan_executor_test.dir/rule:
-	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/grading_sequential_scan_executor_test.dir/rule
-.PHONY : test/CMakeFiles/grading_sequential_scan_executor_test.dir/rule
-
-# Convenience name for target.
-grading_sequential_scan_executor_test: test/CMakeFiles/grading_sequential_scan_executor_test.dir/rule
-
-.PHONY : grading_sequential_scan_executor_test
-
-# fast build rule for target.
-grading_sequential_scan_executor_test/fast:
-	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_sequential_scan_executor_test.dir/build.make test/CMakeFiles/grading_sequential_scan_executor_test.dir/build
-.PHONY : grading_sequential_scan_executor_test/fast
-
-# Convenience name for target.
-test/CMakeFiles/grading_rollback_test.dir/rule:
-	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/grading_rollback_test.dir/rule
-.PHONY : test/CMakeFiles/grading_rollback_test.dir/rule
-
-# Convenience name for target.
-grading_rollback_test: test/CMakeFiles/grading_rollback_test.dir/rule
-
-.PHONY : grading_rollback_test
-
-# fast build rule for target.
-grading_rollback_test/fast:
-	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_rollback_test.dir/build.make test/CMakeFiles/grading_rollback_test.dir/build
-.PHONY : grading_rollback_test/fast
 
 # Convenience name for target.
 test/CMakeFiles/grading_transaction_test.dir/rule:
@@ -1115,33 +1085,6 @@ concurrency/grading_lock_manager_3_test.cpp.s:
 	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_lock_manager_3_test.dir/build.make test/CMakeFiles/grading_lock_manager_3_test.dir/concurrency/grading_lock_manager_3_test.cpp.s
 .PHONY : concurrency/grading_lock_manager_3_test.cpp.s
 
-concurrency/grading_lock_manager_detection_test.o: concurrency/grading_lock_manager_detection_test.cpp.o
-
-.PHONY : concurrency/grading_lock_manager_detection_test.o
-
-# target to build an object file
-concurrency/grading_lock_manager_detection_test.cpp.o:
-	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_lock_manager_detection_test.dir/build.make test/CMakeFiles/grading_lock_manager_detection_test.dir/concurrency/grading_lock_manager_detection_test.cpp.o
-.PHONY : concurrency/grading_lock_manager_detection_test.cpp.o
-
-concurrency/grading_lock_manager_detection_test.i: concurrency/grading_lock_manager_detection_test.cpp.i
-
-.PHONY : concurrency/grading_lock_manager_detection_test.i
-
-# target to preprocess a source file
-concurrency/grading_lock_manager_detection_test.cpp.i:
-	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_lock_manager_detection_test.dir/build.make test/CMakeFiles/grading_lock_manager_detection_test.dir/concurrency/grading_lock_manager_detection_test.cpp.i
-.PHONY : concurrency/grading_lock_manager_detection_test.cpp.i
-
-concurrency/grading_lock_manager_detection_test.s: concurrency/grading_lock_manager_detection_test.cpp.s
-
-.PHONY : concurrency/grading_lock_manager_detection_test.s
-
-# target to generate assembly for a file
-concurrency/grading_lock_manager_detection_test.cpp.s:
-	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_lock_manager_detection_test.dir/build.make test/CMakeFiles/grading_lock_manager_detection_test.dir/concurrency/grading_lock_manager_detection_test.cpp.s
-.PHONY : concurrency/grading_lock_manager_detection_test.cpp.s
-
 concurrency/grading_lock_manager_prevention_test.o: concurrency/grading_lock_manager_prevention_test.cpp.o
 
 .PHONY : concurrency/grading_lock_manager_prevention_test.o
@@ -1600,33 +1543,6 @@ execution/grading_distinct_executor_test.s: execution/grading_distinct_executor_
 execution/grading_distinct_executor_test.cpp.s:
 	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_distinct_executor_test.dir/build.make test/CMakeFiles/grading_distinct_executor_test.dir/execution/grading_distinct_executor_test.cpp.s
 .PHONY : execution/grading_distinct_executor_test.cpp.s
-
-execution/grading_executor_benchmark_test.o: execution/grading_executor_benchmark_test.cpp.o
-
-.PHONY : execution/grading_executor_benchmark_test.o
-
-# target to build an object file
-execution/grading_executor_benchmark_test.cpp.o:
-	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_executor_benchmark_test.dir/build.make test/CMakeFiles/grading_executor_benchmark_test.dir/execution/grading_executor_benchmark_test.cpp.o
-.PHONY : execution/grading_executor_benchmark_test.cpp.o
-
-execution/grading_executor_benchmark_test.i: execution/grading_executor_benchmark_test.cpp.i
-
-.PHONY : execution/grading_executor_benchmark_test.i
-
-# target to preprocess a source file
-execution/grading_executor_benchmark_test.cpp.i:
-	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_executor_benchmark_test.dir/build.make test/CMakeFiles/grading_executor_benchmark_test.dir/execution/grading_executor_benchmark_test.cpp.i
-.PHONY : execution/grading_executor_benchmark_test.cpp.i
-
-execution/grading_executor_benchmark_test.s: execution/grading_executor_benchmark_test.cpp.s
-
-.PHONY : execution/grading_executor_benchmark_test.s
-
-# target to generate assembly for a file
-execution/grading_executor_benchmark_test.cpp.s:
-	cd /home/ubuntu/project/cmu15445/bustub-private/build && $(MAKE) -f test/CMakeFiles/grading_executor_benchmark_test.dir/build.make test/CMakeFiles/grading_executor_benchmark_test.dir/execution/grading_executor_benchmark_test.cpp.s
-.PHONY : execution/grading_executor_benchmark_test.cpp.s
 
 execution/grading_executor_integrated_test.o: execution/grading_executor_integrated_test.cpp.o
 
@@ -2095,6 +2011,7 @@ help:
 	@echo "... depend"
 	@echo "... install/strip"
 	@echo "... install"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... tuple_test"
 	@echo "... tmp_tuple_page_test"
@@ -2104,18 +2021,17 @@ help:
 	@echo "... grading_update_executor_test"
 	@echo "... grading_nested_loop_join_executor_test"
 	@echo "... grading_hash_join_executor_test"
-	@echo "... list_install_components"
-	@echo "... grading_executor_benchmark_test"
 	@echo "... grading_lock_manager_prevention_test"
 	@echo "... grading_lock_manager_2_test"
 	@echo "... grading_insert_executor_test"
 	@echo "... grading_lock_manager_1_test"
-	@echo "... grading_lock_manager_detection_test"
 	@echo "... edit_cache"
 	@echo "... b_plus_tree_insert_test"
 	@echo "... clock_replacer_test"
 	@echo "... type_test"
 	@echo "... parallel_buffer_pool_manager_test"
+	@echo "... grading_sequential_scan_executor_test"
+	@echo "... grading_rollback_test"
 	@echo "... grading_lock_manager_3_test"
 	@echo "... check-tests"
 	@echo "... grading_limit_executor_test"
@@ -2128,8 +2044,6 @@ help:
 	@echo "... grading_hash_table_verification_test"
 	@echo "... build-tests"
 	@echo "... grading_aggregation_executor_test"
-	@echo "... grading_sequential_scan_executor_test"
-	@echo "... grading_rollback_test"
 	@echo "... grading_transaction_test"
 	@echo "... test"
 	@echo "... hash_table_page_test"
@@ -2174,9 +2088,6 @@ help:
 	@echo "... concurrency/grading_lock_manager_3_test.o"
 	@echo "... concurrency/grading_lock_manager_3_test.i"
 	@echo "... concurrency/grading_lock_manager_3_test.s"
-	@echo "... concurrency/grading_lock_manager_detection_test.o"
-	@echo "... concurrency/grading_lock_manager_detection_test.i"
-	@echo "... concurrency/grading_lock_manager_detection_test.s"
 	@echo "... concurrency/grading_lock_manager_prevention_test.o"
 	@echo "... concurrency/grading_lock_manager_prevention_test.i"
 	@echo "... concurrency/grading_lock_manager_prevention_test.s"
@@ -2228,9 +2139,6 @@ help:
 	@echo "... execution/grading_distinct_executor_test.o"
 	@echo "... execution/grading_distinct_executor_test.i"
 	@echo "... execution/grading_distinct_executor_test.s"
-	@echo "... execution/grading_executor_benchmark_test.o"
-	@echo "... execution/grading_executor_benchmark_test.i"
-	@echo "... execution/grading_executor_benchmark_test.s"
 	@echo "... execution/grading_executor_integrated_test.o"
 	@echo "... execution/grading_executor_integrated_test.i"
 	@echo "... execution/grading_executor_integrated_test.s"

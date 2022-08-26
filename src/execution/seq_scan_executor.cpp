@@ -14,53 +14,104 @@
 
 namespace bustub {
 
-/**
- *exec_ctx       [bfp, log manager, lock manager, catalog, txnmanager]
- *catalog:       [tables、indexes]
- *tables:        [id，table_metadata]
- *table_metadata:[schema(表，索引，外键等等), name, table_(table_heap)(pages组成的链表), id]
- *indexes:       [id,index_info]
- *index_info:    [shema, name, index_, id, table_name, key_size]
- *
- */
-
-/**
- private:
-  const SeqScanPlanNode *plan_;
-  Schema *schema_;
-  TableHeap *table_heap_;
-  TableIterator *table_iter_;
- */
 SeqScanExecutor::SeqScanExecutor(ExecutorContext *exec_ctx, const SeqScanPlanNode *plan)
-    : AbstractExecutor(exec_ctx),
-      plan_(plan),
-      schema_(&exec_ctx->GetCatalog()->GetTable(plan_->GetTableOid())->schema_),
-      table_heap_(exec_ctx->GetCatalog()->GetTable(plan_->GetTableOid())->table_.get()),
-      // TableIterator没有默认构造函数，需要手动初始化
-      table_iter_(nullptr, RID{}, nullptr),
-      table_end_iter_(nullptr, RID{}, nullptr) {}
+    : AbstractExecutor(exec_ctx), plan_(plan), table_iter_(nullptr, RID(), nullptr) {}
 
+// Tuple中许多方法都是针对完整模式（table schema）而言的，对切割后的模式使用很容易发生数组越界
+// 两模式中两列是一样的是很难判断的，因为列名可以改变，只能通过原始表的列序号，但其隐藏在ColumnValueExpression类中
+// 故只能不同类型使用不同的Evaluate函数
+// 这些转换函数的大体流程都一样，即使用输出元祖的模式调用Evaluatexxx方法，输出相应列的值
+void SeqScanExecutor::TupleSchemaTranformUseEvaluate(const Tuple *table_tuple, const Schema *table_schema,
+                                                     Tuple *dest_tuple, const Schema *dest_schema) {
+  auto colums = dest_schema->GetColumns();
+  std::vector<Value> dest_value;
+  dest_value.reserve(colums.size());
+
+  for (const auto &col : colums) {
+    dest_value.emplace_back(col.GetExpr()->Evaluate(table_tuple, table_schema));
+  }
+
+  *dest_tuple = Tuple(dest_value, dest_schema);
+}
+
+// 通过列名，偏移量判断模式是否相同
+auto SeqScanExecutor::SchemaEqual(const Schema *table_schema, const Schema *output_schema) -> bool {
+  auto table_colums = table_schema->GetColumns();
+  auto output_colums = output_schema->GetColumns();
+  if (table_colums.size() != output_colums.size()) {
+    return false;
+  }
+
+  int col_size = table_colums.size();
+  uint32_t offset1;
+  uint32_t offset2;
+  std::string name1;
+  std::string name2;
+  for (int i = 0; i < col_size; i++) {
+    offset1 = table_colums[i].GetOffset();
+    offset2 = output_colums[i].GetOffset();
+    name1 = table_colums[i].GetName();
+    name2 = output_colums[i].GetName();
+    if (name1 != name2 || offset1 != offset2) {
+      return false;
+    }
+  }
+  return true;
+}
 void SeqScanExecutor::Init() {
-  // exec_ctx_是父类abstract_executor的成员
-  table_iter_ = table_heap_->Begin(exec_ctx_->GetTransaction());
-  table_end_iter_ = table_heap_->End();
+  auto table_oid = plan_->GetTableOid();
+  table_info_ = exec_ctx_->GetCatalog()->GetTable(table_oid);
+  table_iter_ = table_info_->table_->Begin(exec_ctx_->GetTransaction());
+
+  auto output_schema = plan_->OutputSchema();
+  auto table_schema = table_info_->schema_;
+  is_same_schema_ = SchemaEqual(&table_schema, output_schema);
+
+  // 可重复读：给所有元组加上读锁，事务提交后再解锁
+  auto transaction = exec_ctx_->GetTransaction();
+  auto lockmanager = exec_ctx_->GetLockManager();
+  if (transaction->GetIsolationLevel() == IsolationLevel::REPEATABLE_READ) {
+    auto iter = table_info_->table_->Begin(exec_ctx_->GetTransaction());
+    while (iter != table_info_->table_->End()) {
+      lockmanager->LockShared(transaction, iter->GetRid());
+      ++iter;
+    }
+  }
 }
 
 auto SeqScanExecutor::Next(Tuple *tuple, RID *rid) -> bool {
-  for (; table_iter_ != table_end_iter_; table_iter_++) {
-    *tuple = *table_iter_;
-    *rid = tuple->GetRid();
-    // exec_ctx_->GetLockManager()->LockShared(exec_ctx_->GetTransaction(),*rid);
-    // @return The predicate to test tuples against;
-    // tuples should only be returned if they evaluate to true
-    // auto GetPredicate() const -> const AbstractExpression * { return predicate_; }
-    if (plan_->GetPredicate() == nullptr) {
-      table_iter_++;
-      return true;
+  auto predicate = plan_->GetPredicate();
+  auto output_schema = plan_->OutputSchema();
+  auto table_schema = table_info_->schema_;
+  auto transaction = exec_ctx_->GetTransaction();
+  auto lockmanager = exec_ctx_->GetLockManager();
+  bool res;
+
+  while (table_iter_ != table_info_->table_->End()) {
+    // 读已提交：读元组时加上读锁，读完后立即释放
+    if (transaction->GetIsolationLevel() == IsolationLevel::READ_COMMITTED) {
+      lockmanager->LockShared(transaction, table_iter_->GetRid());
     }
-    if (plan_->GetPredicate()->Evaluate(tuple, plan_->OutputSchema()).GetAs<bool>()) {
-      // Evaluate返回Value类型的结果，将其转化为bool型判断是否满足表达式的条件
-      table_iter_++;
+
+    auto p_tuple = &(*table_iter_);  // 获取指向元组的指针
+    res = true;
+    if (predicate != nullptr) {
+      res = predicate->Evaluate(p_tuple, &table_schema).GetAs<bool>();
+    }
+
+    if (res) {
+      if (!is_same_schema_) {
+        TupleSchemaTranformUseEvaluate(p_tuple, &table_schema, tuple, output_schema);
+      } else {
+        *tuple = *p_tuple;
+      }
+      *rid = p_tuple->GetRid();  // 返回行元组的ID
+    }
+    if (transaction->GetIsolationLevel() == IsolationLevel::READ_COMMITTED) {
+      lockmanager->Unlock(transaction, table_iter_->GetRid());
+    }
+    ++table_iter_;  // 指向下一位置后再返回
+    if (res) {
       return true;
     }
   }

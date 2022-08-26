@@ -356,11 +356,6 @@
 },
 {
   "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
-  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_executor_benchmark_test.dir/execution/grading_executor_benchmark_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_executor_benchmark_test.cpp",
-  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_executor_benchmark_test.cpp"
-},
-{
-  "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
   "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_lock_manager_prevention_test.dir/concurrency/grading_lock_manager_prevention_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/concurrency/grading_lock_manager_prevention_test.cpp",
   "file": "/home/ubuntu/project/cmu15445/bustub-private/test/concurrency/grading_lock_manager_prevention_test.cpp"
 },
@@ -381,11 +376,6 @@
 },
 {
   "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
-  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_lock_manager_detection_test.dir/concurrency/grading_lock_manager_detection_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/concurrency/grading_lock_manager_detection_test.cpp",
-  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/concurrency/grading_lock_manager_detection_test.cpp"
-},
-{
-  "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
   "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/b_plus_tree_insert_test.dir/storage/b_plus_tree_insert_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/storage/b_plus_tree_insert_test.cpp",
   "file": "/home/ubuntu/project/cmu15445/bustub-private/test/storage/b_plus_tree_insert_test.cpp"
 },
@@ -403,6 +393,16 @@
   "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
   "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/parallel_buffer_pool_manager_test.dir/buffer/parallel_buffer_pool_manager_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/buffer/parallel_buffer_pool_manager_test.cpp",
   "file": "/home/ubuntu/project/cmu15445/bustub-private/test/buffer/parallel_buffer_pool_manager_test.cpp"
+},
+{
+  "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
+  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_sequential_scan_executor_test.dir/execution/grading_sequential_scan_executor_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_sequential_scan_executor_test.cpp",
+  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_sequential_scan_executor_test.cpp"
+},
+{
+  "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
+  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_rollback_test.dir/concurrency/grading_rollback_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/concurrency/grading_rollback_test.cpp",
+  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/concurrency/grading_rollback_test.cpp"
 },
 {
   "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
@@ -453,16 +453,6 @@
   "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
   "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_aggregation_executor_test.dir/execution/grading_aggregation_executor_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_aggregation_executor_test.cpp",
   "file": "/home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_aggregation_executor_test.cpp"
-},
-{
-  "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
-  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_sequential_scan_executor_test.dir/execution/grading_sequential_scan_executor_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_sequential_scan_executor_test.cpp",
-  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/execution/grading_sequential_scan_executor_test.cpp"
-},
-{
-  "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",
-  "command": "/usr/bin/c++   -I/home/ubuntu/project/cmu15445/bustub-private/src -I/home/ubuntu/project/cmu15445/bustub-private/src/include -I/home/ubuntu/project/cmu15445/bustub-private/test/include -I/home/ubuntu/project/cmu15445/bustub-private/third_party -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googletest -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock/include -isystem /home/ubuntu/project/cmu15445/bustub-private/build/googletest-src/googlemock   -fPIC -Wall -Wextra -Werror -Wno-unused-parameter -Wno-attributes   -std=gnu++17 -o CMakeFiles/grading_rollback_test.dir/concurrency/grading_rollback_test.cpp.o -c /home/ubuntu/project/cmu15445/bustub-private/test/concurrency/grading_rollback_test.cpp",
-  "file": "/home/ubuntu/project/cmu15445/bustub-private/test/concurrency/grading_rollback_test.cpp"
 },
 {
   "directory": "/home/ubuntu/project/cmu15445/bustub-private/build/test",

@@ -32,6 +32,8 @@ test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nes
 test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: ../src/include/execution/expressions/comparison_expression.h
 test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: ../src/include/execution/expressions/constant_value_expression.h
 test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: ../src/include/execution/plans/abstract_plan.h
+test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: ../src/include/execution/plans/delete_plan.h
+test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: ../src/include/execution/plans/limit_plan.h
 test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: ../src/include/execution/plans/mock_scan_plan.h
 test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: ../src/include/execution/plans/nested_loop_join_plan.h
 test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: ../src/include/execution/plans/seq_scan_plan.h
@@ -66,7 +68,7 @@ test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nes
 test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: ../src/include/type/varlen_type.h
 test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: ../test/include/test_util.h
 test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: ../third_party/murmur3/MurmurHash3.h
-test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: ../test/execution/grading_executor_test_util.h
+test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: ../test/execution/executor_test_util.h
 test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: ../test/execution/grading_nested_loop_join_executor_test.cpp
 test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: googletest-src/googletest/include/gtest/gtest-assertion-result.h
 test/CMakeFiles/grading_nested_loop_join_executor_test.dir/execution/grading_nested_loop_join_executor_test.cpp.o: googletest-src/googletest/include/gtest/gtest-death-test.h

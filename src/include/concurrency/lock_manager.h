@@ -107,17 +107,15 @@ class LockManager {
   auto Unlock(Transaction *txn, const RID &rid) -> bool;
 
  private:
-
   auto LockPrepare(Transaction *txn, const RID &rid) -> bool;
 
   auto GetIterator(std::list<LockRequest> *request_queue, txn_id_t txn_id) -> std::list<LockRequest>::iterator;
 
   void DeadlockPrevent(Transaction *txn, LockRequestQueue *request_queue);
 
-
   std::mutex latch_;
 
-  /** Lock table for lock requests. 
+  /** Lock table for lock requests.
   class LockRequestQueue {
    public:
     std::list<LockRequest> request_queue_;
@@ -129,8 +127,7 @@ class LockManager {
   */
   std::unordered_map<RID, LockRequestQueue> lock_table_;
 
-  std::unordered_map<txn_id_t, Transaction*> id_2_txn_;
-
+  std::unordered_map<txn_id_t, Transaction *> id_2_txn_;
 };
 
 }  // namespace bustub

@@ -38,8 +38,8 @@ class SeqScanExecutor : public AbstractExecutor {
 
   /**
    * Yield the next tuple from the sequential scan.
-   * @param[out] tuple :The next tuple produced by the scan
-   * @param[out] rid   :The next tuple RID produced by the scan
+   * @param[out] tuple The next tuple produced by the scan
+   * @param[out] rid The next tuple RID produced by the scan
    * @return `true` if a tuple was produced, `false` if there are no more tuples
    */
   auto Next(Tuple *tuple, RID *rid) -> bool override;
@@ -48,11 +48,16 @@ class SeqScanExecutor : public AbstractExecutor {
   auto GetOutputSchema() -> const Schema * override { return plan_->OutputSchema(); }
 
  private:
+  void TupleSchemaTranformUseEvaluate(const Tuple *table_tuple, const Schema *table_schema, Tuple *dest_tuple,
+                                      const Schema *dest_schema);
+
+  auto SchemaEqual(const Schema *table_schema, const Schema *output_schema) -> bool;
   /** The sequential scan plan node to be executed */
   const SeqScanPlanNode *plan_;
-  Schema *schema_;
-  TableHeap *table_heap_;
+
   TableIterator table_iter_;
-  TableIterator table_end_iter_;
+  TableInfo *table_info_;
+
+  bool is_same_schema_;  // 表模式与输出模式是否一致
 };
 }  // namespace bustub
