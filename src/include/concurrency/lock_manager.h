@@ -41,7 +41,7 @@ class LockManager {
 
     txn_id_t txn_id_;
     LockMode lock_mode_;
-    bool granted_;
+    bool granted_;  // 标记是否加了锁
   };
 
   class LockRequestQueue {
@@ -49,8 +49,10 @@ class LockManager {
     std::list<LockRequest> request_queue_;
     // for notifying blocked transactions on this rid
     std::condition_variable cv_;
-    // txn_id of an upgrading transaction (if any)
-    txn_id_t upgrading_ = INVALID_TXN_ID;
+    // txn_id of an upgrading transaction (if any) 队列中不能出现两个更新锁
+    bool upgrading_ = false;
+    int sharing_count_ = 0;
+    bool is_writing_ = false;
   };
 
  public:
@@ -105,10 +107,30 @@ class LockManager {
   auto Unlock(Transaction *txn, const RID &rid) -> bool;
 
  private:
+
+  auto LockPrepare(Transaction *txn, const RID &rid) -> bool;
+
+  auto GetIterator(std::list<LockRequest> *request_queue, txn_id_t txn_id) -> std::list<LockRequest>::iterator;
+
+  void DeadlockPrevent(Transaction *txn, LockRequestQueue *request_queue);
+
+
   std::mutex latch_;
 
-  /** Lock table for lock requests. */
+  /** Lock table for lock requests. 
+  class LockRequestQueue {
+   public:
+    std::list<LockRequest> request_queue_;
+    // for notifying blocked transactions on this rid
+    std::condition_variable cv_;
+    // txn_id of an upgrading transaction (if any)
+    txn_id_t upgrading_ = INVALID_TXN_ID;
+  };
+  */
   std::unordered_map<RID, LockRequestQueue> lock_table_;
+
+  std::unordered_map<txn_id_t, Transaction*> id_2_txn_;
+
 };
 
 }  // namespace bustub

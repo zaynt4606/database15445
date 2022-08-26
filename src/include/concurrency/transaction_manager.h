@@ -62,7 +62,7 @@ class TransactionManager {
 
   /** The transaction map is a global list of all the running transactions in the system. */
   static std::unordered_map<txn_id_t, Transaction *> txn_map;
-  static std::shared_mutex txn_map_mutex;
+  static std::shared_timed_mutex txn_map_mutex;  // 将shared_mutex改为shared_timed_mutex
 
   /**
    * Locates and returns the transaction with the given transaction ID.

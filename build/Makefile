@@ -376,121 +376,108 @@ grading_update_executor_test/fast:
 .PHONY : grading_update_executor_test/fast
 
 #=============================================================================
-# Target rules for targets named b_plus_tree_concurrent_test
+# Target rules for targets named grading_nested_loop_join_executor_test
 
 # Build rule for target.
-b_plus_tree_concurrent_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 b_plus_tree_concurrent_test
-.PHONY : b_plus_tree_concurrent_test
+grading_nested_loop_join_executor_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_nested_loop_join_executor_test
+.PHONY : grading_nested_loop_join_executor_test
 
 # fast build rule for target.
-b_plus_tree_concurrent_test/fast:
-	$(MAKE) -f test/CMakeFiles/b_plus_tree_concurrent_test.dir/build.make test/CMakeFiles/b_plus_tree_concurrent_test.dir/build
-.PHONY : b_plus_tree_concurrent_test/fast
+grading_nested_loop_join_executor_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_nested_loop_join_executor_test.dir/build.make test/CMakeFiles/grading_nested_loop_join_executor_test.dir/build
+.PHONY : grading_nested_loop_join_executor_test/fast
 
 #=============================================================================
-# Target rules for targets named grading_hash_table_leaderboard_test
+# Target rules for targets named grading_hash_join_executor_test
 
 # Build rule for target.
-grading_hash_table_leaderboard_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_hash_table_leaderboard_test
-.PHONY : grading_hash_table_leaderboard_test
+grading_hash_join_executor_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_hash_join_executor_test
+.PHONY : grading_hash_join_executor_test
 
 # fast build rule for target.
-grading_hash_table_leaderboard_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_hash_table_leaderboard_test.dir/build.make test/CMakeFiles/grading_hash_table_leaderboard_test.dir/build
-.PHONY : grading_hash_table_leaderboard_test/fast
+grading_hash_join_executor_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_hash_join_executor_test.dir/build.make test/CMakeFiles/grading_hash_join_executor_test.dir/build
+.PHONY : grading_hash_join_executor_test/fast
 
 #=============================================================================
-# Target rules for targets named grading_hash_table_page_test
+# Target rules for targets named grading_executor_benchmark_test
 
 # Build rule for target.
-grading_hash_table_page_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_hash_table_page_test
-.PHONY : grading_hash_table_page_test
+grading_executor_benchmark_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_executor_benchmark_test
+.PHONY : grading_executor_benchmark_test
 
 # fast build rule for target.
-grading_hash_table_page_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_hash_table_page_test.dir/build.make test/CMakeFiles/grading_hash_table_page_test.dir/build
-.PHONY : grading_hash_table_page_test/fast
+grading_executor_benchmark_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_executor_benchmark_test.dir/build.make test/CMakeFiles/grading_executor_benchmark_test.dir/build
+.PHONY : grading_executor_benchmark_test/fast
 
 #=============================================================================
-# Target rules for targets named lru_replacer_test
+# Target rules for targets named grading_lock_manager_prevention_test
 
 # Build rule for target.
-lru_replacer_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 lru_replacer_test
-.PHONY : lru_replacer_test
+grading_lock_manager_prevention_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_lock_manager_prevention_test
+.PHONY : grading_lock_manager_prevention_test
 
 # fast build rule for target.
-lru_replacer_test/fast:
-	$(MAKE) -f test/CMakeFiles/lru_replacer_test.dir/build.make test/CMakeFiles/lru_replacer_test.dir/build
-.PHONY : lru_replacer_test/fast
+grading_lock_manager_prevention_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_lock_manager_prevention_test.dir/build.make test/CMakeFiles/grading_lock_manager_prevention_test.dir/build
+.PHONY : grading_lock_manager_prevention_test/fast
 
 #=============================================================================
-# Target rules for targets named recovery_test
+# Target rules for targets named grading_lock_manager_2_test
 
 # Build rule for target.
-recovery_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 recovery_test
-.PHONY : recovery_test
+grading_lock_manager_2_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_lock_manager_2_test
+.PHONY : grading_lock_manager_2_test
 
 # fast build rule for target.
-recovery_test/fast:
-	$(MAKE) -f test/CMakeFiles/recovery_test.dir/build.make test/CMakeFiles/recovery_test.dir/build
-.PHONY : recovery_test/fast
+grading_lock_manager_2_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_lock_manager_2_test.dir/build.make test/CMakeFiles/grading_lock_manager_2_test.dir/build
+.PHONY : grading_lock_manager_2_test/fast
 
 #=============================================================================
-# Target rules for targets named grading_hash_table_verification_test
+# Target rules for targets named grading_insert_executor_test
 
 # Build rule for target.
-grading_hash_table_verification_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_hash_table_verification_test
-.PHONY : grading_hash_table_verification_test
+grading_insert_executor_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_insert_executor_test
+.PHONY : grading_insert_executor_test
 
 # fast build rule for target.
-grading_hash_table_verification_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_hash_table_verification_test.dir/build.make test/CMakeFiles/grading_hash_table_verification_test.dir/build
-.PHONY : grading_hash_table_verification_test/fast
+grading_insert_executor_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_insert_executor_test.dir/build.make test/CMakeFiles/grading_insert_executor_test.dir/build
+.PHONY : grading_insert_executor_test/fast
 
 #=============================================================================
-# Target rules for targets named grading_hash_table_concurrent_test
+# Target rules for targets named grading_lock_manager_1_test
 
 # Build rule for target.
-grading_hash_table_concurrent_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_hash_table_concurrent_test
-.PHONY : grading_hash_table_concurrent_test
+grading_lock_manager_1_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_lock_manager_1_test
+.PHONY : grading_lock_manager_1_test
 
 # fast build rule for target.
-grading_hash_table_concurrent_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_hash_table_concurrent_test.dir/build.make test/CMakeFiles/grading_hash_table_concurrent_test.dir/build
-.PHONY : grading_hash_table_concurrent_test/fast
+grading_lock_manager_1_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_lock_manager_1_test.dir/build.make test/CMakeFiles/grading_lock_manager_1_test.dir/build
+.PHONY : grading_lock_manager_1_test/fast
 
 #=============================================================================
-# Target rules for targets named lock_manager_test
+# Target rules for targets named grading_lock_manager_detection_test
 
 # Build rule for target.
-lock_manager_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 lock_manager_test
-.PHONY : lock_manager_test
+grading_lock_manager_detection_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_lock_manager_detection_test
+.PHONY : grading_lock_manager_detection_test
 
 # fast build rule for target.
-lock_manager_test/fast:
-	$(MAKE) -f test/CMakeFiles/lock_manager_test.dir/build.make test/CMakeFiles/lock_manager_test.dir/build
-.PHONY : lock_manager_test/fast
-
-#=============================================================================
-# Target rules for targets named catalog_test
-
-# Build rule for target.
-catalog_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 catalog_test
-.PHONY : catalog_test
-
-# fast build rule for target.
-catalog_test/fast:
-	$(MAKE) -f test/CMakeFiles/catalog_test.dir/build.make test/CMakeFiles/catalog_test.dir/build
-.PHONY : catalog_test/fast
+grading_lock_manager_detection_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_lock_manager_detection_test.dir/build.make test/CMakeFiles/grading_lock_manager_detection_test.dir/build
+.PHONY : grading_lock_manager_detection_test/fast
 
 #=============================================================================
 # Target rules for targets named b_plus_tree_insert_test
@@ -545,17 +532,17 @@ parallel_buffer_pool_manager_test/fast:
 .PHONY : parallel_buffer_pool_manager_test/fast
 
 #=============================================================================
-# Target rules for targets named grading_executor_benchmark_test
+# Target rules for targets named grading_lock_manager_3_test
 
 # Build rule for target.
-grading_executor_benchmark_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_executor_benchmark_test
-.PHONY : grading_executor_benchmark_test
+grading_lock_manager_3_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_lock_manager_3_test
+.PHONY : grading_lock_manager_3_test
 
 # fast build rule for target.
-grading_executor_benchmark_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_executor_benchmark_test.dir/build.make test/CMakeFiles/grading_executor_benchmark_test.dir/build
-.PHONY : grading_executor_benchmark_test/fast
+grading_lock_manager_3_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_lock_manager_3_test.dir/build.make test/CMakeFiles/grading_lock_manager_3_test.dir/build
+.PHONY : grading_lock_manager_3_test/fast
 
 #=============================================================================
 # Target rules for targets named check-tests
@@ -569,6 +556,110 @@ check-tests: cmake_check_build_system
 check-tests/fast:
 	$(MAKE) -f test/CMakeFiles/check-tests.dir/build.make test/CMakeFiles/check-tests.dir/build
 .PHONY : check-tests/fast
+
+#=============================================================================
+# Target rules for targets named grading_limit_executor_test
+
+# Build rule for target.
+grading_limit_executor_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_limit_executor_test
+.PHONY : grading_limit_executor_test
+
+# fast build rule for target.
+grading_limit_executor_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_limit_executor_test.dir/build.make test/CMakeFiles/grading_limit_executor_test.dir/build
+.PHONY : grading_limit_executor_test/fast
+
+#=============================================================================
+# Target rules for targets named hash_table_test
+
+# Build rule for target.
+hash_table_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hash_table_test
+.PHONY : hash_table_test
+
+# fast build rule for target.
+hash_table_test/fast:
+	$(MAKE) -f test/CMakeFiles/hash_table_test.dir/build.make test/CMakeFiles/hash_table_test.dir/build
+.PHONY : hash_table_test/fast
+
+#=============================================================================
+# Target rules for targets named catalog_test
+
+# Build rule for target.
+catalog_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 catalog_test
+.PHONY : catalog_test
+
+# fast build rule for target.
+catalog_test/fast:
+	$(MAKE) -f test/CMakeFiles/catalog_test.dir/build.make test/CMakeFiles/catalog_test.dir/build
+.PHONY : catalog_test/fast
+
+#=============================================================================
+# Target rules for targets named lock_manager_test
+
+# Build rule for target.
+lock_manager_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lock_manager_test
+.PHONY : lock_manager_test
+
+# fast build rule for target.
+lock_manager_test/fast:
+	$(MAKE) -f test/CMakeFiles/lock_manager_test.dir/build.make test/CMakeFiles/lock_manager_test.dir/build
+.PHONY : lock_manager_test/fast
+
+#=============================================================================
+# Target rules for targets named grading_executor_integrated_test
+
+# Build rule for target.
+grading_executor_integrated_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_executor_integrated_test
+.PHONY : grading_executor_integrated_test
+
+# fast build rule for target.
+grading_executor_integrated_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_executor_integrated_test.dir/build.make test/CMakeFiles/grading_executor_integrated_test.dir/build
+.PHONY : grading_executor_integrated_test/fast
+
+#=============================================================================
+# Target rules for targets named grading_distinct_executor_test
+
+# Build rule for target.
+grading_distinct_executor_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_distinct_executor_test
+.PHONY : grading_distinct_executor_test
+
+# fast build rule for target.
+grading_distinct_executor_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_distinct_executor_test.dir/build.make test/CMakeFiles/grading_distinct_executor_test.dir/build
+.PHONY : grading_distinct_executor_test/fast
+
+#=============================================================================
+# Target rules for targets named recovery_test
+
+# Build rule for target.
+recovery_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 recovery_test
+.PHONY : recovery_test
+
+# fast build rule for target.
+recovery_test/fast:
+	$(MAKE) -f test/CMakeFiles/recovery_test.dir/build.make test/CMakeFiles/recovery_test.dir/build
+.PHONY : recovery_test/fast
+
+#=============================================================================
+# Target rules for targets named grading_hash_table_verification_test
+
+# Build rule for target.
+grading_hash_table_verification_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_hash_table_verification_test
+.PHONY : grading_hash_table_verification_test
+
+# fast build rule for target.
+grading_hash_table_verification_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_hash_table_verification_test.dir/build.make test/CMakeFiles/grading_hash_table_verification_test.dir/build
+.PHONY : grading_hash_table_verification_test/fast
 
 #=============================================================================
 # Target rules for targets named build-tests
@@ -597,6 +688,123 @@ grading_aggregation_executor_test/fast:
 .PHONY : grading_aggregation_executor_test/fast
 
 #=============================================================================
+# Target rules for targets named grading_sequential_scan_executor_test
+
+# Build rule for target.
+grading_sequential_scan_executor_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_sequential_scan_executor_test
+.PHONY : grading_sequential_scan_executor_test
+
+# fast build rule for target.
+grading_sequential_scan_executor_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_sequential_scan_executor_test.dir/build.make test/CMakeFiles/grading_sequential_scan_executor_test.dir/build
+.PHONY : grading_sequential_scan_executor_test/fast
+
+#=============================================================================
+# Target rules for targets named grading_rollback_test
+
+# Build rule for target.
+grading_rollback_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_rollback_test
+.PHONY : grading_rollback_test
+
+# fast build rule for target.
+grading_rollback_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_rollback_test.dir/build.make test/CMakeFiles/grading_rollback_test.dir/build
+.PHONY : grading_rollback_test/fast
+
+#=============================================================================
+# Target rules for targets named grading_transaction_test
+
+# Build rule for target.
+grading_transaction_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_transaction_test
+.PHONY : grading_transaction_test
+
+# fast build rule for target.
+grading_transaction_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_transaction_test.dir/build.make test/CMakeFiles/grading_transaction_test.dir/build
+.PHONY : grading_transaction_test/fast
+
+#=============================================================================
+# Target rules for targets named hash_table_page_test
+
+# Build rule for target.
+hash_table_page_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hash_table_page_test
+.PHONY : hash_table_page_test
+
+# fast build rule for target.
+hash_table_page_test/fast:
+	$(MAKE) -f test/CMakeFiles/hash_table_page_test.dir/build.make test/CMakeFiles/hash_table_page_test.dir/build
+.PHONY : hash_table_page_test/fast
+
+#=============================================================================
+# Target rules for targets named grading_hash_table_concurrent_test
+
+# Build rule for target.
+grading_hash_table_concurrent_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_hash_table_concurrent_test
+.PHONY : grading_hash_table_concurrent_test
+
+# fast build rule for target.
+grading_hash_table_concurrent_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_hash_table_concurrent_test.dir/build.make test/CMakeFiles/grading_hash_table_concurrent_test.dir/build
+.PHONY : grading_hash_table_concurrent_test/fast
+
+#=============================================================================
+# Target rules for targets named b_plus_tree_concurrent_test
+
+# Build rule for target.
+b_plus_tree_concurrent_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 b_plus_tree_concurrent_test
+.PHONY : b_plus_tree_concurrent_test
+
+# fast build rule for target.
+b_plus_tree_concurrent_test/fast:
+	$(MAKE) -f test/CMakeFiles/b_plus_tree_concurrent_test.dir/build.make test/CMakeFiles/b_plus_tree_concurrent_test.dir/build
+.PHONY : b_plus_tree_concurrent_test/fast
+
+#=============================================================================
+# Target rules for targets named grading_hash_table_leaderboard_test
+
+# Build rule for target.
+grading_hash_table_leaderboard_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_hash_table_leaderboard_test
+.PHONY : grading_hash_table_leaderboard_test
+
+# fast build rule for target.
+grading_hash_table_leaderboard_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_hash_table_leaderboard_test.dir/build.make test/CMakeFiles/grading_hash_table_leaderboard_test.dir/build
+.PHONY : grading_hash_table_leaderboard_test/fast
+
+#=============================================================================
+# Target rules for targets named lru_replacer_test
+
+# Build rule for target.
+lru_replacer_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lru_replacer_test
+.PHONY : lru_replacer_test
+
+# fast build rule for target.
+lru_replacer_test/fast:
+	$(MAKE) -f test/CMakeFiles/lru_replacer_test.dir/build.make test/CMakeFiles/lru_replacer_test.dir/build
+.PHONY : lru_replacer_test/fast
+
+#=============================================================================
+# Target rules for targets named grading_hash_table_page_test
+
+# Build rule for target.
+grading_hash_table_page_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 grading_hash_table_page_test
+.PHONY : grading_hash_table_page_test
+
+# fast build rule for target.
+grading_hash_table_page_test/fast:
+	$(MAKE) -f test/CMakeFiles/grading_hash_table_page_test.dir/build.make test/CMakeFiles/grading_hash_table_page_test.dir/build
+.PHONY : grading_hash_table_page_test/fast
+
+#=============================================================================
 # Target rules for targets named grading_hash_table_scale_test
 
 # Build rule for target.
@@ -608,19 +816,6 @@ grading_hash_table_scale_test: cmake_check_build_system
 grading_hash_table_scale_test/fast:
 	$(MAKE) -f test/CMakeFiles/grading_hash_table_scale_test.dir/build.make test/CMakeFiles/grading_hash_table_scale_test.dir/build
 .PHONY : grading_hash_table_scale_test/fast
-
-#=============================================================================
-# Target rules for targets named grading_hash_join_executor_test
-
-# Build rule for target.
-grading_hash_join_executor_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_hash_join_executor_test
-.PHONY : grading_hash_join_executor_test
-
-# fast build rule for target.
-grading_hash_join_executor_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_hash_join_executor_test.dir/build.make test/CMakeFiles/grading_hash_join_executor_test.dir/build
-.PHONY : grading_hash_join_executor_test/fast
 
 #=============================================================================
 # Target rules for targets named buffer_pool_manager_instance_test
@@ -662,19 +857,6 @@ b_plus_tree_delete_test/fast:
 .PHONY : b_plus_tree_delete_test/fast
 
 #=============================================================================
-# Target rules for targets named transaction_test
-
-# Build rule for target.
-transaction_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 transaction_test
-.PHONY : transaction_test
-
-# fast build rule for target.
-transaction_test/fast:
-	$(MAKE) -f test/CMakeFiles/transaction_test.dir/build.make test/CMakeFiles/transaction_test.dir/build
-.PHONY : transaction_test/fast
-
-#=============================================================================
 # Target rules for targets named rwlatch_test
 
 # Build rule for target.
@@ -686,6 +868,19 @@ rwlatch_test: cmake_check_build_system
 rwlatch_test/fast:
 	$(MAKE) -f test/CMakeFiles/rwlatch_test.dir/build.make test/CMakeFiles/rwlatch_test.dir/build
 .PHONY : rwlatch_test/fast
+
+#=============================================================================
+# Target rules for targets named transaction_test
+
+# Build rule for target.
+transaction_test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 transaction_test
+.PHONY : transaction_test
+
+# fast build rule for target.
+transaction_test/fast:
+	$(MAKE) -f test/CMakeFiles/transaction_test.dir/build.make test/CMakeFiles/transaction_test.dir/build
+.PHONY : transaction_test/fast
 
 #=============================================================================
 # Target rules for targets named executor_test
@@ -701,19 +896,6 @@ executor_test/fast:
 .PHONY : executor_test/fast
 
 #=============================================================================
-# Target rules for targets named hash_table_page_test
-
-# Build rule for target.
-hash_table_page_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 hash_table_page_test
-.PHONY : hash_table_page_test
-
-# fast build rule for target.
-hash_table_page_test/fast:
-	$(MAKE) -f test/CMakeFiles/hash_table_page_test.dir/build.make test/CMakeFiles/hash_table_page_test.dir/build
-.PHONY : hash_table_page_test/fast
-
-#=============================================================================
 # Target rules for targets named grading_delete_executor_test
 
 # Build rule for target.
@@ -725,97 +907,6 @@ grading_delete_executor_test: cmake_check_build_system
 grading_delete_executor_test/fast:
 	$(MAKE) -f test/CMakeFiles/grading_delete_executor_test.dir/build.make test/CMakeFiles/grading_delete_executor_test.dir/build
 .PHONY : grading_delete_executor_test/fast
-
-#=============================================================================
-# Target rules for targets named grading_distinct_executor_test
-
-# Build rule for target.
-grading_distinct_executor_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_distinct_executor_test
-.PHONY : grading_distinct_executor_test
-
-# fast build rule for target.
-grading_distinct_executor_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_distinct_executor_test.dir/build.make test/CMakeFiles/grading_distinct_executor_test.dir/build
-.PHONY : grading_distinct_executor_test/fast
-
-#=============================================================================
-# Target rules for targets named grading_executor_integrated_test
-
-# Build rule for target.
-grading_executor_integrated_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_executor_integrated_test
-.PHONY : grading_executor_integrated_test
-
-# fast build rule for target.
-grading_executor_integrated_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_executor_integrated_test.dir/build.make test/CMakeFiles/grading_executor_integrated_test.dir/build
-.PHONY : grading_executor_integrated_test/fast
-
-#=============================================================================
-# Target rules for targets named grading_insert_executor_test
-
-# Build rule for target.
-grading_insert_executor_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_insert_executor_test
-.PHONY : grading_insert_executor_test
-
-# fast build rule for target.
-grading_insert_executor_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_insert_executor_test.dir/build.make test/CMakeFiles/grading_insert_executor_test.dir/build
-.PHONY : grading_insert_executor_test/fast
-
-#=============================================================================
-# Target rules for targets named hash_table_test
-
-# Build rule for target.
-hash_table_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 hash_table_test
-.PHONY : hash_table_test
-
-# fast build rule for target.
-hash_table_test/fast:
-	$(MAKE) -f test/CMakeFiles/hash_table_test.dir/build.make test/CMakeFiles/hash_table_test.dir/build
-.PHONY : hash_table_test/fast
-
-#=============================================================================
-# Target rules for targets named grading_limit_executor_test
-
-# Build rule for target.
-grading_limit_executor_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_limit_executor_test
-.PHONY : grading_limit_executor_test
-
-# fast build rule for target.
-grading_limit_executor_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_limit_executor_test.dir/build.make test/CMakeFiles/grading_limit_executor_test.dir/build
-.PHONY : grading_limit_executor_test/fast
-
-#=============================================================================
-# Target rules for targets named grading_sequential_scan_executor_test
-
-# Build rule for target.
-grading_sequential_scan_executor_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_sequential_scan_executor_test
-.PHONY : grading_sequential_scan_executor_test
-
-# fast build rule for target.
-grading_sequential_scan_executor_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_sequential_scan_executor_test.dir/build.make test/CMakeFiles/grading_sequential_scan_executor_test.dir/build
-.PHONY : grading_sequential_scan_executor_test/fast
-
-#=============================================================================
-# Target rules for targets named grading_nested_loop_join_executor_test
-
-# Build rule for target.
-grading_nested_loop_join_executor_test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 grading_nested_loop_join_executor_test
-.PHONY : grading_nested_loop_join_executor_test
-
-# fast build rule for target.
-grading_nested_loop_join_executor_test/fast:
-	$(MAKE) -f test/CMakeFiles/grading_nested_loop_join_executor_test.dir/build.make test/CMakeFiles/grading_nested_loop_join_executor_test.dir/build
-.PHONY : grading_nested_loop_join_executor_test/fast
 
 # Help Target
 help:
@@ -846,40 +937,47 @@ help:
 	@echo "... b_plus_tree_print_test"
 	@echo "... starter_test"
 	@echo "... grading_update_executor_test"
-	@echo "... b_plus_tree_concurrent_test"
-	@echo "... grading_hash_table_leaderboard_test"
-	@echo "... grading_hash_table_page_test"
-	@echo "... lru_replacer_test"
-	@echo "... recovery_test"
-	@echo "... grading_hash_table_verification_test"
-	@echo "... grading_hash_table_concurrent_test"
-	@echo "... lock_manager_test"
-	@echo "... catalog_test"
+	@echo "... grading_nested_loop_join_executor_test"
+	@echo "... grading_hash_join_executor_test"
+	@echo "... grading_executor_benchmark_test"
+	@echo "... grading_lock_manager_prevention_test"
+	@echo "... grading_lock_manager_2_test"
+	@echo "... grading_insert_executor_test"
+	@echo "... grading_lock_manager_1_test"
+	@echo "... grading_lock_manager_detection_test"
 	@echo "... b_plus_tree_insert_test"
 	@echo "... clock_replacer_test"
 	@echo "... type_test"
 	@echo "... parallel_buffer_pool_manager_test"
-	@echo "... grading_executor_benchmark_test"
+	@echo "... grading_lock_manager_3_test"
 	@echo "... check-tests"
+	@echo "... grading_limit_executor_test"
+	@echo "... hash_table_test"
+	@echo "... catalog_test"
+	@echo "... lock_manager_test"
+	@echo "... grading_executor_integrated_test"
+	@echo "... grading_distinct_executor_test"
+	@echo "... recovery_test"
+	@echo "... grading_hash_table_verification_test"
 	@echo "... build-tests"
 	@echo "... grading_aggregation_executor_test"
+	@echo "... grading_sequential_scan_executor_test"
+	@echo "... grading_rollback_test"
+	@echo "... grading_transaction_test"
+	@echo "... hash_table_page_test"
+	@echo "... grading_hash_table_concurrent_test"
+	@echo "... b_plus_tree_concurrent_test"
+	@echo "... grading_hash_table_leaderboard_test"
+	@echo "... lru_replacer_test"
+	@echo "... grading_hash_table_page_test"
 	@echo "... grading_hash_table_scale_test"
-	@echo "... grading_hash_join_executor_test"
 	@echo "... buffer_pool_manager_instance_test"
 	@echo "... grading_hash_table_test"
 	@echo "... b_plus_tree_delete_test"
-	@echo "... transaction_test"
 	@echo "... rwlatch_test"
+	@echo "... transaction_test"
 	@echo "... executor_test"
-	@echo "... hash_table_page_test"
 	@echo "... grading_delete_executor_test"
-	@echo "... grading_distinct_executor_test"
-	@echo "... grading_executor_integrated_test"
-	@echo "... grading_insert_executor_test"
-	@echo "... hash_table_test"
-	@echo "... grading_limit_executor_test"
-	@echo "... grading_sequential_scan_executor_test"
-	@echo "... grading_nested_loop_join_executor_test"
 .PHONY : help
 
 

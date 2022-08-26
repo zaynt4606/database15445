@@ -171,7 +171,7 @@ class Transaction {
 
   ~Transaction() = default;
 
-  DISALLOW_COPY(Transaction);
+  DISALLOW_COPY(Transaction);  // 限制编译器自动生动的拷贝构造函数和赋值构造函数
 
   /** @return the id of the thread running the transaction */
   inline auto GetThreadId() const -> std::thread::id { return thread_id_; }
