@@ -16,215 +16,264 @@
 #include <vector>
 
 namespace bustub {
+// 如果中止事务持有锁，则不能擅自解锁，可能一直停留在队列中，如果未持有锁，则需要立即移除
+// 杀死请求队列中优先级更小的请求，保证S锁请求前没有比其更年轻的X锁请求，X锁请求前没有比其更年轻的请求
+void LockManager::KillRequest(txn_id_t id, const RID &rid, KillType type) {
+  Transaction *transaction;
+  bool expr;
+  auto &request_queue = lock_table_[rid].request_queue_;
+  /*
+  进行两次遍历，第一次遍历杀死所有未获得锁的低优先级请求并移出队列
+  第二次遍历将获得锁的低优先级请求解锁后再中止事务，在解锁函数中已经将该请求移出队列
+  之所以进行两次遍历是为了避免本该被杀死的未加锁的请求在前面加锁请求被杀死后获得锁，避免不必要的解锁操作
+  所以说最好的遍历方式应该是反向遍历，但反向遍历删除容易产生迭代器失效问题，并且有时请求是在解锁函数中移除，不太好控制，故进行两次遍历
+  */
+  auto iter = request_queue.begin();
+  while (iter != request_queue.end()) {
+    // 此时读请求不应该被杀死，对其取反
+    expr = !(type == KillType::WRITE_REQUEST && iter->lock_mode_ == LockMode::SHARED);
+    transaction = iter->transation_;  // 记录事务指针
+    // 将未获得锁的低优先级非中止事务变成中止事务
+    if (id < iter->txn_id_ && transaction->GetState() != TransactionState::ABORTED && expr && !iter->granted_) {
+      transaction->SetState(TransactionState::ABORTED);
+    }
+    // 移除未获得锁的中止事务请求
+    if (transaction->GetState() == TransactionState::ABORTED && !iter->granted_) {
+      iter = request_queue.erase(iter);
+    } else {
+      ++iter;
+    }
+  }
+  iter = request_queue.begin();
+  while (iter != request_queue.end()) {
+    // 此时读请求不应该被杀死，对其取反
+    expr = !(type == KillType::WRITE_REQUEST && iter->lock_mode_ == LockMode::SHARED);
+    transaction = iter->transation_;  // 记录事务指针
+    // 对低优先级非中止事务进行操作
+    if (id < iter->txn_id_ && transaction->GetState() != TransactionState::ABORTED && expr && iter->granted_) {
+      ++iter;
+      UnlockImp(transaction, rid);  // 调用解锁函数，同时将请求移出队列
+      transaction->SetState(TransactionState::ABORTED);
+    } else {
+      ++iter;
+    }
+  }
+}
 
-// 加读锁
-bool LockManager::LockShared(Transaction *txn, const RID &rid) {
-  std::unique_lock<std::mutex> lock(latch_);
+// 唤醒队首后连续的S锁请求
+void LockManager::AwakeSharedRequest(const RID &rid) {
+  auto &request_queue = lock_table_[rid].request_queue_;
+  assert(lock_table_[rid].status_ == RIDStatus::SHARED);
+  txn_id_t max_id = MAX_ID;
+  // 若存在更新锁请求，则只能唤醒比其优先级更高的S锁请求
+  if (lock_table_[rid].upgrading_ != INVALID_TXN_ID) {
+    max_id = lock_table_[rid].upgrading_;
+  }
+  for (auto &req : request_queue) {
+    if (req.lock_mode_ == LockMode::EXCLUSIVE) {
+      return;
+    }
+    if (!req.granted_ && req.txn_id_ < max_id) {
+      req.granted_ = true;
+      lock_table_[rid].share_req_cnt_++;
+    }
+  }
+}
 
-  id_2_txn_.emplace(txn->GetTransactionId(), txn);
-  // READ_UNCOMMITTED只有在需要时上写锁
-  if (txn->GetIsolationLevel() == IsolationLevel::READ_UNCOMMITTED) {
+auto LockManager::LockShared(Transaction *txn, const RID &rid) -> bool {
+  auto is_shared = txn->IsSharedLocked(rid);
+  auto is_exc = txn->IsExclusiveLocked(rid);
+  auto transaction_state = txn->GetState();
+  auto isolation_level = txn->GetIsolationLevel();
+  auto txn_id = txn->GetTransactionId();
+
+  if (is_shared || is_exc) {  // 防止重复加锁
+    return true;
+  }
+  if (transaction_state != TransactionState::GROWING) {  // 判断当前是否为growing阶段
     txn->SetState(TransactionState::ABORTED);
-    throw TransactionAbortException(txn->GetTransactionId(), AbortReason::LOCKSHARED_ON_READ_UNCOMMITTED);
     return false;
   }
-  if (!LockPrepare(txn, rid)) {
+  if (isolation_level == IsolationLevel::READ_UNCOMMITTED) {  // 读未提交没有S锁(存在脏读)
+    txn->SetState(TransactionState::ABORTED);
     return false;
   }
 
-  LockRequestQueue *request_queue = &lock_table_.find(rid)->second;
-  request_queue->request_queue_.emplace_back(txn->GetTransactionId(), LockMode::SHARED);
+  std::unique_lock<std::mutex> lock(latch_);
+  LockRequest req(txn, txn_id, LockMode::SHARED);
 
-  // 如果正在进行写操作
-  if (request_queue->is_writing_) {
-    DeadlockPrevent(txn, request_queue);                            // 预防死锁 task2
-    request_queue->cv_.wait(lock, [request_queue]() -> bool {  // 循环等待
-      return !request_queue->is_writing_;                           // 直到写操作结束
-    });
+  if (lock_table_.count(rid) == 0) {  // 当前资源未被占用,请求得到保证
+    req.granted_ = true;
+    lock_table_[rid].request_queue_.emplace_back(req);
+    lock_table_[rid].status_ = RIDStatus::SHARED;
+    lock_table_[rid].share_req_cnt_ = 1;
+  } else {
+    lock_table_[rid].request_queue_.emplace_back(req);
+    LockRequest &request_ref = lock_table_[rid].request_queue_.back();  // 保留请求引用
+    KillRequest(txn_id, rid, KillType::WRITE_REQUEST);                  // 杀死所有低优先级X锁请求
+    if (lock_table_[rid].status_ == RIDStatus::SHARED) {                // 唤醒连续的S锁请求
+      AwakeSharedRequest(rid);
+    }
+    lock_table_[rid].cv_.notify_all();  // 唤醒请求，防止中止事务一直等待
+    while (txn->GetState() != TransactionState::ABORTED && !(request_ref.granted_)) {  // 事务中止或得到保证
+      lock_table_[rid].cv_.wait(lock);
+    }
+    if (txn->GetState() == TransactionState::ABORTED) {  // 在请求队列中删除未持有中止事务
+      return false;
+    }
   }
-
   txn->GetSharedLockSet()->emplace(rid);
-  request_queue->sharing_count_++;
-  auto iter = GetIterator(&request_queue->request_queue_, txn->GetTransactionId());
-  iter->granted_ = true;
-
   return true;
 }
 
-// 加写锁
-bool LockManager::LockExclusive(Transaction *txn, const RID &rid) {
-  std::unique_lock<std::mutex> lock(latch_);
+auto LockManager::LockExclusive(Transaction *txn, const RID &rid) -> bool {
+  auto is_shared = txn->IsSharedLocked(rid);  // 防止重复加锁
+  auto is_exc = txn->IsExclusiveLocked(rid);
+  auto transaction_state = txn->GetState();
+  auto txn_id = txn->GetTransactionId();
 
-  id_2_txn_.emplace(txn->GetTransactionId(), txn);
-
-  if (!LockPrepare(txn, rid)) {
+  if (is_exc) {  // 防止重复加锁
+    return true;
+  }
+  if (is_shared) {
+    return false;
+  }
+  if (transaction_state != TransactionState::GROWING) {  // 判断当前是否为growing阶段
+    txn->SetState(TransactionState::ABORTED);
     return false;
   }
 
-  LockRequestQueue *request_queue = &lock_table_.find(rid)->second;
-  request_queue->request_queue_.emplace_back(txn->GetTransactionId(), LockMode::EXCLUSIVE);
-
-  if (request_queue->is_writing_ || request_queue->sharing_count_ > 0) {  // 加写锁不能有读锁和写锁
-    DeadlockPrevent(txn, request_queue);
-    request_queue->cv_.wait(lock, [request_queue]() -> bool {
-      return !request_queue->is_writing_ && request_queue->sharing_count_ == 0;
-    });
+  std::unique_lock<std::mutex> lock(latch_);
+  LockRequest req(txn, txn_id, LockMode::EXCLUSIVE);
+  if (lock_table_.count(rid) == 0) {  // 当前资源未被占用
+    req.granted_ = true;
+    lock_table_[rid].request_queue_.emplace_back(req);
+    lock_table_[rid].status_ = RIDStatus::EXCLUSIVE;
+  } else {
+    // 与LockShared函数一致的步骤
+    lock_table_[rid].request_queue_.emplace_back(req);
+    LockRequest &request_ref = lock_table_[rid].request_queue_.back();
+    KillRequest(txn_id, rid, KillType::ALL_REQUEST);      // 杀死所有低优先级请求
+    if (lock_table_[rid].status_ == RIDStatus::SHARED) {  // 唤醒连续的S锁请求
+      AwakeSharedRequest(rid);
+    }
+    lock_table_[rid].cv_.notify_all();  // 唤醒请求，防止中止事务一直等待
+    while (txn->GetState() != TransactionState::ABORTED && !(request_ref.granted_)) {  // 事务中止或得到保证
+      lock_table_[rid].cv_.wait(lock);
+    }
+    if (txn->GetState() == TransactionState::ABORTED) {
+      return false;
+    }
   }
 
   txn->GetExclusiveLockSet()->emplace(rid);
-  request_queue->is_writing_ = true;
-  auto iter = GetIterator(&request_queue->request_queue_, txn->GetTransactionId());
-  iter->granted_ = true;
-
   return true;
 }
 
-/**
-升级锁
-将读锁升级为写锁。由于加写锁需要保证当前没有读锁，那么如果队列中有两个更新锁的请求，就会互相等待对方解读锁
-因此，为了判断是否出现这种情况，在队列中维护标志变量upgrading_，不允许队列中出现两个更新锁的请求。
-将队列中的读锁请求改为写锁，循环判断是否满足加更新写锁条件（当前没有写锁，且只有唯一一个该读锁）。
- */
-bool LockManager::LockUpgrade(Transaction *txn, const RID &rid) {
+auto LockManager::LockUpgrade(Transaction *txn, const RID &rid) -> bool {
+  auto transaction_state = txn->GetState();
+  auto txn_id = txn->GetTransactionId();
+
+  if (transaction_state != TransactionState::GROWING) {
+    txn->SetState(TransactionState::ABORTED);
+    return false;
+  }
+  if (!txn->IsSharedLocked(rid)) {  // 如果自身未持有S锁
+    txn->SetState(TransactionState::ABORTED);
+    return false;
+  }
+
   std::unique_lock<std::mutex> lock(latch_);
-
-  if (txn->GetState() == TransactionState::SHRINKING) {
+  if (lock_table_[rid].upgrading_ != INVALID_TXN_ID) {  // 已有更新请求
     txn->SetState(TransactionState::ABORTED);
-    throw TransactionAbortException(txn->GetTransactionId(), AbortReason::LOCK_ON_SHRINKING);
     return false;
   }
 
-  LockRequestQueue *request_queue = &lock_table_.find(rid)->second;
-
-  if (request_queue->upgrading_) {  // 队列中出现过更新锁，直接aborted这个更新锁
-    txn->SetState(TransactionState::ABORTED);
-    throw TransactionAbortException(txn->GetTransactionId(), AbortReason::UPGRADE_CONFLICT);
-    return false;
+  lock_table_[rid].upgrading_ = txn_id;
+  KillRequest(txn_id, rid, KillType::ALL_REQUEST);  // 杀死所有低优先级请求
+  lock_table_[rid].cv_.notify_all();                // 唤醒请求，防止中止事务一直等待
+  while (txn->GetState() != TransactionState::ABORTED &&
+         lock_table_[rid].share_req_cnt_ != 1) {  // 未被中止，等待S锁持有者只有自己
+    lock_table_[rid].cv_.wait(lock);
   }
-
-  // 升级读锁，把读锁改成写锁， 不能放在等待后面，这里要改掉读锁，就等着改
-  txn->GetSharedLockSet()->erase(rid);
-  request_queue->sharing_count_--;
-  auto iter = GetIterator(&request_queue->request_queue_, txn->GetTransactionId());
-  iter->lock_mode_ = LockMode::EXCLUSIVE;
-  iter->granted_ = false;
-
-  // aborted要求是后面才return false 但是一开始就直接false也行
+  lock_table_[rid].upgrading_ = INVALID_TXN_ID;  // 将更新请求事务id重新置为无效
   if (txn->GetState() == TransactionState::ABORTED) {
-    throw TransactionAbortException(txn->GetTransactionId(), AbortReason::DEADLOCK);
     return false;
   }
+  auto request_location = lock_table_[rid].request_queue_.begin();
+  assert(request_location->txn_id_ == txn_id);  // 队列第一位即该更新请求，此时没有中止事务持有锁
+  request_location->lock_mode_ = LockMode::EXCLUSIVE;  // 更改请求模式
+  lock_table_[rid].share_req_cnt_ = 0;
+  lock_table_[rid].status_ = RIDStatus::EXCLUSIVE;
 
-  // 只有没有读锁的时候才能升级
-  if (request_queue->is_writing_ || request_queue->sharing_count_ > 0) {
-    DeadlockPrevent(txn, request_queue);
-    request_queue->upgrading_ = true;  // 等待升级
-    request_queue->cv_.wait(lock, [request_queue]() -> bool {
-      return !request_queue->is_writing_ && request_queue->sharing_count_ == 0;
-    });
-  }
-
-  // 等前面的读锁结束才能升级
+  txn->GetSharedLockSet()->erase(rid);
   txn->GetExclusiveLockSet()->emplace(rid);
-  request_queue->upgrading_ = false;  // 升级结束
-  request_queue->is_writing_ = true;
-  iter = GetIterator(&request_queue->request_queue_, txn->GetTransactionId());
-  iter->granted_ = true;
-
   return true;
 }
 
-/**
- * @brief
-在请求队列和LockSet中删除对应的请求(不存在锁请求就return false), 并设置事务状态为Shrinking
-notify_all()通知其他请求可以尝试加锁了, 不是notify_one()而是all的原因是,
-可能可以通知很多想要加S锁的请求, 这样他们就都能拿到锁了
-！！只有Growing时才设置txn的状态为Shrinking, 因为总不能Aborted的时候解个锁解成Shrinking
-！！当lock_mode是S锁时, 只有RR才设置Shrinking,
-    因为RC是可以重复的加S锁/解S锁的, 这样他才可以在一个事务周期中读到不同的数据
- */
-bool LockManager::Unlock(Transaction *txn, const RID &rid) {
+auto LockManager::Unlock(Transaction *txn, const RID &rid) -> bool {
   std::unique_lock<std::mutex> lock(latch_);
+  return UnlockImp(txn, rid);
+}
+// 实现unlock函数功能，但不加锁，便于KillRequest调用
+auto LockManager::UnlockImp(Transaction *txn, const RID &rid) -> bool {
+  auto is_shared = txn->IsSharedLocked(rid);
+  auto is_exc = txn->IsExclusiveLocked(rid);
+  auto state = txn->GetState();
+  auto isolation_level = txn->GetIsolationLevel();
+  auto txn_id = txn->GetTransactionId();
 
-  LockRequestQueue *request_queue = &lock_table_.find(rid)->second;
-
-  txn->GetSharedLockSet()->erase(rid);
-  txn->GetExclusiveLockSet()->erase(rid);
-
-  auto iter = GetIterator(&request_queue->request_queue_, txn->GetTransactionId());
-  LockMode mode = iter->lock_mode_;
-  request_queue->request_queue_.erase(iter);
-
-  // 只有growing的时候才设置成shrinking，aborted就不能设了
-  if (!(mode == LockMode::SHARED && txn->GetIsolationLevel() == IsolationLevel::READ_COMMITTED) &&
-      txn->GetState() == TransactionState::GROWING) {
+  if (!is_shared && !is_exc) {  // 未持有锁
+    return false;
+  }
+  // 需提前判断事务当前状态，只在growing时才修改状态为shrinking
+  if (isolation_level == IsolationLevel::REPEATABLE_READ && state == TransactionState::GROWING) {
     txn->SetState(TransactionState::SHRINKING);
   }
 
-  if (mode == LockMode::SHARED) {  // 读锁
-                                   // 都通知其他了，不一定要没有读锁才通知
-                                   // if (--request_queue->sharing_count_ == 0)
-    request_queue->cv_.notify_all();
-
-  } else {  // 有写锁 先解写锁再通知
-    request_queue->is_writing_ = false;
-    request_queue->cv_.notify_all();
-  }
-  return true;
-}
-
-/** 上锁前的准备工作
-检查一下事务是否已经是Shrinking状态, 如果已经Shrinking了, 这时上锁是不合法行为, 要将事务回滚
-检查一下事务是否已经是Abort状态, 如果是, 直接return false即可
-如果是RU隔离界别来上S锁, 那我们同样应该回滚事务,
-    这是因为RU的实现方式就是无锁读, 这样就能读到脏数据了, 如果上了S锁, RU将无法读到脏数据
-检查是否已经上过同级或更高级的锁了, 如果已经上过了, 我们直接return true
- */
-bool LockManager::LockPrepare(Transaction *txn, const RID &rid) {
-  if (txn->GetState() == TransactionState::SHRINKING) {
-    txn->SetState(TransactionState::ABORTED);  // 回滚？
-    // debug
-    throw TransactionAbortException(txn->GetTransactionId(), AbortReason::LOCK_ON_SHRINKING);
-    return false;
-  }
-
-  if (txn->GetState() == TransactionState::ABORTED) {
-    // debug
-    throw TransactionAbortException(txn->GetTransactionId(), AbortReason::DEADLOCK);
-    return false;
-  }
-  // mutex和condition_variable不能被复制或移动，所以要用emplave 和 piecewise_construct
-  if (lock_table_.find(rid) == lock_table_.end()) {
-    lock_table_.emplace(std::piecewise_construct, std::forward_as_tuple(rid), std::forward_as_tuple());
-  }
-  return true;
-}
-
-// 得到id为所要的LockRequest的迭代器, 没找到就返回给的list的end迭代器
-std::list<LockManager::LockRequest>::iterator LockManager::GetIterator(std::list<LockRequest> *request_queue,
-                                                                       txn_id_t txn_id) {
-  for (auto iter = request_queue->begin(); iter != request_queue->end(); ++iter) {
+  // 在请求队列中删除该请求
+  for (auto iter = lock_table_[rid].request_queue_.begin(); iter != lock_table_[rid].request_queue_.end(); ++iter) {
     if (iter->txn_id_ == txn_id) {
-      return iter;
+      lock_table_[rid].request_queue_.erase(iter);
+      break;  // 删除后立即返回
     }
   }
-  return request_queue->end();
-}
+  bool need_find_next_req = true;
+  bool exist_normal_request = false;
+  LockMode next_req_mode;
+  if (is_shared) {
+    lock_table_[rid].share_req_cnt_--;
+    if (lock_table_[rid].share_req_cnt_ != 0) {  // 仍有事务持有该锁，不应该释放
+      need_find_next_req = false;
+    }
+  }
+  // 下一个非中止请求，此时没有中止事务的等待请求，故第一个要么是正常请求，要么是中止事务的持有锁的请求，但第二种情况need_find_next_req为false
+  auto next_req_iter = lock_table_[rid].request_queue_.begin();
+  if (!lock_table_[rid].request_queue_.empty()) {
+    exist_normal_request = true;
+    next_req_mode = next_req_iter->lock_mode_;
+  }
 
-// 预防死锁
-void LockManager::DeadlockPrevent(Transaction *txn, LockRequestQueue *request_queue) {
-  // 遍历std::list<LockRequest> request_queue_;
-  for (const auto &request : request_queue->request_queue_) {
-    // 冲突了去掉这个
-    if (request.granted_ && request.txn_id_ > txn->GetTransactionId()) {
-      id_2_txn_[request.txn_id_]->SetState(TransactionState::ABORTED);
-      // 调整去掉的时候的标记
-      if (request.lock_mode_ == LockMode::SHARED) {
-        request_queue->sharing_count_--;
-      } else {
-        request_queue->is_writing_ = false;
-      }
+  if (need_find_next_req && exist_normal_request) {  // 给予一些请求保证
+    if (next_req_mode == LockMode::SHARED) {
+      lock_table_[rid].status_ = RIDStatus::SHARED;
+      AwakeSharedRequest(rid);
+    } else {
+      lock_table_[rid].status_ = RIDStatus::EXCLUSIVE;
+      next_req_iter->granted_ = true;
     }
   }
+  lock_table_[rid].cv_.notify_all();  // 唤醒请求
+
+  if (need_find_next_req && !exist_normal_request) {  // 请求队列没有请求
+    lock_table_.erase(rid);
+  }
+  if (is_shared) {
+    txn->GetSharedLockSet()->erase(rid);
+  }
+  if (is_exc) {
+    txn->GetExclusiveLockSet()->erase(rid);
+  }
+  return true;
 }
 }  // namespace bustub

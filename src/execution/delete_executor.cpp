@@ -27,7 +27,7 @@ void DeleteExecutor::Init() {
 
 auto DeleteExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
   auto transaction = exec_ctx_->GetTransaction();
-  // auto lockmanager = exec_ctx_->GetLockManager();
+  auto lockmanager = exec_ctx_->GetLockManager();
   auto table_oid = plan_->TableOid();
   auto catalog = exec_ctx_->GetCatalog();
 
@@ -37,11 +37,11 @@ auto DeleteExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
   bool res = child_executor_->Next(&child_tuple, &child_rid);
 
   if (res) {
-    // if (transaction->GetIsolationLevel() == IsolationLevel::REPEATABLE_READ) {
-    //   lockmanager->LockUpgrade(transaction, child_rid);  // 之前查询获取了读锁，现在需要将锁升级
-    // } else {
-    //   lockmanager->LockExclusive(transaction, child_rid);  // 未获取读锁
-    // }
+    if (transaction->GetIsolationLevel() == IsolationLevel::REPEATABLE_READ) {
+      lockmanager->LockUpgrade(transaction, child_rid);  // 之前查询获取了读锁，现在需要将锁升级
+    } else {
+      lockmanager->LockExclusive(transaction, child_rid);  // 未获取读锁
+    }
 
     bool delete_res = table_info_->table_->MarkDelete(child_rid, transaction);
     if (!delete_res) {  // 抛出异常，需要进行相应处理

@@ -35,7 +35,7 @@ void InsertExecutor::Init() {
 
 auto InsertExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
   auto transaction = exec_ctx_->GetTransaction();
-  // auto lockmanager = exec_ctx_->GetLockManager();
+  auto lockmanager = exec_ctx_->GetLockManager();
   auto table_oid = plan_->TableOid();
   auto catalog = exec_ctx_->GetCatalog();
 
@@ -58,7 +58,7 @@ auto InsertExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
 
   if (res) {
     table_info_->table_->InsertTuple(insert_tuple, &insert_rid, transaction);  // insert_rid此时才被赋值
-    // lockmanager->LockExclusive(transaction, insert_rid);                       // 加上写锁
+    lockmanager->LockExclusive(transaction, insert_rid);                       // 加上写锁
     Tuple key_tuple;
     for (auto info : index_info_) {  // 更新索引
       key_tuple = insert_tuple.KeyFromTuple(table_schema, info->key_schema_, info->index_->GetKeyAttrs());

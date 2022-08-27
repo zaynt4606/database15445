@@ -77,7 +77,7 @@ void UpdateExecutor::Init() {
 
 auto UpdateExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
   auto transaction = exec_ctx_->GetTransaction();
-  // auto lockmanager = exec_ctx_->GetLockManager();
+  auto lockmanager = exec_ctx_->GetLockManager();
   auto table_oid = plan_->TableOid();
   auto catalog = exec_ctx_->GetCatalog();
 
@@ -92,11 +92,11 @@ auto UpdateExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
     update_tuple = GenerateUpdatedTuple(child_tuple);
     update_rid = update_tuple.GetRid();
 
-    // if (transaction->GetIsolationLevel() == IsolationLevel::REPEATABLE_READ) {
-    //   lockmanager->LockUpgrade(transaction, child_rid);  // 之前查询获取了读锁，现在需要将锁升级
-    // } else {
-    //   lockmanager->LockExclusive(transaction, child_rid);  // 加上写锁
-    // }
+    if (transaction->GetIsolationLevel() == IsolationLevel::REPEATABLE_READ) {
+      lockmanager->LockUpgrade(transaction, child_rid);  // 之前查询获取了读锁，现在需要将锁升级
+    } else {
+      lockmanager->LockExclusive(transaction, child_rid);  // 加上写锁
+    }
 
     table_info_->table_->UpdateTuple(update_tuple, child_rid, transaction);  // 传入old rid
     Tuple old_key_tuple;
@@ -106,9 +106,6 @@ auto UpdateExecutor::Next([[maybe_unused]] Tuple *tuple, RID *rid) -> bool {
       new_key_tuple = update_tuple.KeyFromTuple(table_schema, info->key_schema_, info->index_->GetKeyAttrs());
       info->index_->DeleteEntry(old_key_tuple, child_rid, transaction);
       info->index_->InsertEntry(new_key_tuple, child_rid, transaction);
-      // 维护IndexWriteSet
-      // transaction->AppendIndexWriteRecord(IndexWriteRecord{child_rid, table_oid, WType::UPDATE, new_key_tuple,
-      //                                                      old_key_tuple, info->index_oid_, catalog});
       transaction->AppendIndexWriteRecord(
           IndexWriteRecord{child_rid, table_oid, WType::UPDATE, update_tuple, child_tuple, info->index_oid_, catalog});
     }

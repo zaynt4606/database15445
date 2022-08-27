@@ -43,9 +43,8 @@ class LockManager {
 
   class LockRequest {
    public:
-    LockRequest(Transaction *txn, txn_id_t txn_id, LockMode lock_mode)
-        : transation_(txn), txn_id_(txn_id), lock_mode_(lock_mode), granted_(false) {}
-    Transaction *transation_;
+    LockRequest(txn_id_t txn_id, LockMode lock_mode) : txn_id_(txn_id), lock_mode_(lock_mode), granted_(false) {}
+    // Transaction *transation_;
     txn_id_t txn_id_;
     LockMode lock_mode_;
     bool granted_;  // 标记是否加了锁
@@ -53,19 +52,19 @@ class LockManager {
 
   class LockRequestQueue {
    public:
-    struct SetpComparator {  // 重载map的key值排序方式
-      bool operator()(const LockRequest &lhs, const LockRequest &rhs) const { return lhs.txn_id_ < rhs.txn_id_; }
-    };
+    // struct SetpComparator {  // 重载map的key值排序方式
+    //   bool operator()(const LockRequest &lhs, const LockRequest &rhs) const { return lhs.txn_id_ < rhs.txn_id_; }
+    // };
     std::list<LockRequest> request_queue_;
     // for notifying blocked transactions on this rid
     std::condition_variable cv_;
     // txn_id of an upgrading transaction (if any) 队列中不能出现两个更新锁
-    // bool upgrading_ = false;
-    txn_id_t upgrading_ = INVALID_TXN_ID;
-    int share_req_cnt_{0};  // 当前持有S锁的事务个数
-    RIDStatus status_;      // 当前RID上的锁
-    // int sharing_count_ = 0;
-    // bool is_writing_ = false;
+    bool upgrading_ = false;
+    // txn_id_t upgrading_ = INVALID_TXN_ID;
+    // int share_req_cnt_{0};  // 当前持有S锁的事务个数
+    // RIDStatus status_;  // 当前RID上的锁
+    int sharing_count_ = 0;
+    bool is_writing_ = false;
   };
 
  public:
